@@ -4,7 +4,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AuthController;
-
+#tes git
 Route::get('/', function () {
     return redirect()->route('auth.index');
 });
