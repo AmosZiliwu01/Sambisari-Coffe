@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AuthController;
@@ -27,29 +30,34 @@ Route::get('/logout', function () {
 
 Route::middleware(['auth:user'])->group(function () {
     Route::prefix('admin')->group(function (){
-        Route::get('/',[App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
-        Route::get('/profile',[App\Http\Controllers\DashboardController::class, 'profile'])->name('dashboard.profile');
-        Route::get('/reset-password',[App\Http\Controllers\DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
-        Route::post('/reset-password',[App\Http\Controllers\DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
+        Route::get('/',[DashboardController::class, 'index'])->name('dashboard.index');
+        Route::get('/profile',[DashboardController::class, 'profile'])->name('dashboard.profile');
+        Route::get('/reset-password',[DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
+        Route::post('/reset-password',[DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
 
+        Route::get('/kategori',[KategoriController::class, 'index'])->name('kategori.index');
+        Route::get('/kategori/tambah',[KategoriController::class, 'tambah'])->name('kategori.tambah');
+        Route::post('/kategori/prosesTambah',[KategoriController::class, 'prosesTambah'])->name('kategori.prosesTambah');
+        Route::get('/kategori/ubah/{id}',[KategoriController::class, 'ubah'])->name('kategori.ubah');
+        Route::post('/kategori/prosesUbah',[KategoriController::class, 'prosesUbah'])->name('kategori.prosesUbah');
+        Route::get('/kategori/hapus/{id}',[KategoriController::class, 'hapus'])->name('kategori.hapus');
+        Route::get('/kategori/export-pdf',[KategoriController::class, 'exportPdf'])->name('kategori.exportPdf');
 
+        Route::get('/product',[ProductController::class, 'index'])->name('product.index');
+        Route::get('/product/tambah',[ProductController::class, 'tambah'])->name('product.tambah');
+        Route::post('/product/prosesTambah',[ProductController::class, 'prosesTambah'])->name('product.prosesTambah');
+        Route::get('/product/ubah/{id}',[ProductController::class, 'ubah'])->name('product.ubah');
+        Route::post('/product/prosesUbah',[ProductController::class, 'prosesUbah'])->name('product.prosesUbah');
+        Route::get('/product/hapus/{id}',[ProductController::class, 'hapus'])->name('product.hapus');
 
-        Route::get('/kategori',[App\Http\Controllers\KategoriController::class, 'index'])->name('kategori.index');
-        Route::get('/kategori/tambah',[App\Http\Controllers\KategoriController::class, 'tambah'])->name('kategori.tambah');
-        Route::post('/kategori/prosesTambah',[App\Http\Controllers\KategoriController::class, 'prosesTambah'])->name('kategori.prosesTambah');
-        Route::get('/kategori/ubah/{id}',[App\Http\Controllers\KategoriController::class, 'ubah'])->name('kategori.ubah');
-        Route::post('/kategori/prosesUbah',[App\Http\Controllers\KategoriController::class, 'prosesUbah'])->name('kategori.prosesUbah');
-        Route::get('/kategori/hapus/{id}',[App\Http\Controllers\KategoriController::class, 'hapus'])->name('kategori.hapus');
-        Route::get('/kategori/export-pdf',[App\Http\Controllers\KategoriController::class, 'exportPdf'])->name('kategori.exportPdf');
+        Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
+        Route::get('/staff/tambah', [StaffController::class, 'tambah'])->name('staff.tambah');
+        Route::post('/staff/prosesTambah', [StaffController::class, 'prosesTambah'])->name('staff.prosesTambah');
+        Route::get('/staff/ubah/{id}', [StaffController::class, 'ubah'])->name('staff.ubah');
+        Route::post('/staff/prosesUbah', [StaffController::class, 'prosesUbah'])->name('staff.prosesUbah');
+        Route::get('/staff/hapus/{id}', [StaffController::class, 'hapus'])->name('staff.hapus');
 
-        Route::get('/product',[\App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
-        Route::get('/product/tambah',[App\Http\Controllers\ProductController::class, 'tambah'])->name('product.tambah');
-        Route::post('/product/prosesTambah',[App\Http\Controllers\ProductController::class, 'prosesTambah'])->name('product.prosesTambah');
-        Route::get('/product/ubah/{id}',[App\Http\Controllers\ProductController::class, 'ubah'])->name('product.ubah');
-        Route::post('/product/prosesUbah',[App\Http\Controllers\ProductController::class, 'prosesUbah'])->name('product.prosesUbah');
-        Route::get('/product/hapus/{id}',[App\Http\Controllers\ProductController::class, 'hapus'])->name('product.hapus');
-
-        });
+    });
         Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
     });
 

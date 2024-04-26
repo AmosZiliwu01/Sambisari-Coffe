@@ -56,7 +56,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link d-flex flex-column align-items-center" href="index.html">
+            <a class="nav-link d-flex flex-column align-items-center" href="{{ route('dashboard.index') }}">
                 <img class="img-profile rounded-circle mb-1" src={{asset("assets/img/undraw_profile.svg")}}>
                 <span class="text-center">ADMIN</span>
             </a>
@@ -95,11 +95,12 @@
         </li>
 
 
-        {{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="{{ route('#') }}">--}}
-{{--                <i class="fas fa-fw fa-table"></i>--}}
-{{--                <span>Data User</span></a>--}}
-{{--        </li>--}}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('staff.index') }}">
+                <i class="fas fa-fw fa-user-tie"></i>
+                <span>Data Staff</span>
+            </a>
+        </li>
 
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link" href="{{ route('#') }}">--}}
@@ -292,13 +293,12 @@
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-white-600 small">Amos Aleksiato Ziliwu</span>
-                            <img class="img-profile rounded-circle"
-                                 src={{asset("assets/img/undraw_profile.svg")}}>
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <span style="margin-right: 10px;">{{ auth()->user()->email }}</span>
+                            <img class="img-profile rounded-circle" src="{{ asset('assets/img/undraw_profile.svg') }}">
                         </a>
-                        <!-- Dropdown - User Information -->
+
+                    <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#">

@@ -2,31 +2,41 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('test@example.com'),
+        // Menambahkan pengguna untuk staff
+        DB::table('users')->insert([
+            'name' => 'Staff User',
+            'email' => 'staff@example.com',
+            'password' => Hash::make('staff@example.com'), // Encrypt the password
+            'role' => 'staff',
         ]);
 
-        DB::table('kategori')->insert([
-            'nama_kategori' => 'Nasional'
+        // Menambahkan pengguna untuk admin
+        DB::table('users')->insert([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('admin@example.com'), // Encrypt the password
+            'role' => 'admin',
+        ]);
+
+        // Menambahkan data staf secara langsung ke dalam tabel 'staffs'
+        DB::table('staffs')->insert([
+            'nama' => 'Budi',
+            'jabatan' => 'kasir',
+            'email' => 'budi@gmail.com',
+            'tanggung_jawab' => 'Menyiapkan pesanan'
         ]);
     }
 }
