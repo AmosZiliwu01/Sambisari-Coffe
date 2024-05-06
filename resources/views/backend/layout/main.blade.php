@@ -102,6 +102,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('feedback.index') }}">
+                <i class="fas fa-fw fa-tags"></i>
+                <span>Data Feedback</span>
+            </a>
+        </li>
+
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link" href="{{ route('#') }}">--}}
 {{--                <i class="fas fa-fw fa-table"></i>--}}
@@ -291,12 +298,15 @@
 
                     <div class="topbar-divider d-none d-sm-block"></div>
 
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <span style="margin-right: 10px;">{{ auth()->user()->email }}</span>
-                            <img class="img-profile rounded-circle" src="{{ asset('assets/img/undraw_profile.svg') }}">
-                        </a>
+                    <!-- Nav Item - User Information --><li class="nav-item dropdown no-arrow">
+                        @if(auth()->check() && auth()->user()->email)
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <span style="margin-right: 10px;">{{ auth()->user()->email }}</span>
+                                <img class="img-profile rounded-circle" src="{{ asset('assets/img/undraw_profile.svg') }}">
+                            </a>
+                        @endif
+                    </li>
+
 
                     <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

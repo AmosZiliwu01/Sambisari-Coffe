@@ -7,6 +7,7 @@ use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedbackController;
 #tes git
 Route::get('/', function () {
     return redirect()->route('auth.index');
@@ -72,3 +73,12 @@ Route::get('files/{filename}', function ($filename) {
     $response->header("Content-Type", $type);
     return $response;
 })->name('storage');
+
+
+Route::group(['prefix' => 'feedback'], function () {
+    Route::get('/', [FeedbackController::class, 'index'])->name('feedback.index');
+    Route::get('/formTambah', [FeedbackController::class, 'formTambah'])->name('feedback.formTambah');
+    Route::post('/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
+    Route::get('/list', [FeedbackController::class, 'list'])->name('feedback.list');
+    Route::get('/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
+});
