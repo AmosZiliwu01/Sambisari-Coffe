@@ -1,4 +1,4 @@
-@extends('backend/layout/main')
+@extends('backend.layout.main')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -24,28 +24,34 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Gambar Product </th>
-                            <th>Judul Product</th>
+                            <th>Gambar Product</th>
+                            <th>Barcode</th>
+                            <th>Name</th>
+                            <th>Isi Product</th>
+                            <th>Price</th>
                             <th>Kategori</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $no = 1;
-                            @endphp
-                            @foreach ($product as $row)
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($products as $product)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td><img src="{{ route('storage',$row->gambar_product) }}" width="50px" height="50px"></td>
-                                <td>{{ $row->judul_product }}</td>
-                                <td>{{ $row->kategori->nama_kategori }}</td>
+                                <td><img src="{{ route('storage', $product->gambar_product) }}" width="50px" height="50px"></td>
+                                <td>{{ $product->barcode }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->isi_product }}</td> <!-- Display isi_product -->
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->kategori->nama_kategori }}</td>
                                 <td>
-                                    <a href="{{ route('product.ubah',$row->id_product) }}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i> Ubah</a>
-                                    <a href="{{ route('product.hapus',$row->id_product) }}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary btn-danger"><i class="fa fa-trash"> </i> Hapus</a>
+                                    <a href="{{ route('product.ubah', $product->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i> Ubah</a>
+                                    <a href="{{ route('product.hapus', $product->id) }}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary btn-danger"><i class="fa fa-trash"> </i> Hapus</a>
                                 </td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -53,4 +59,3 @@
         </div>
     </div>
 @endsection
-

@@ -1,31 +1,43 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
 #tes git
-Route::get('/', function () {
-    return redirect()->route('auth.index');
-});
+//Route::get('/', function () {
+//    return redirect()->route('auth.index');
+//});
+//
+//Route::middleware(['guest'])->group(function () {
+//    Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
+//    Route::post('/login', [AuthController::class, 'verify'])->name('auth.verify');
+//});
+//
+//Route::get('/register',[AuthController::class, 'register']);
+//Route::post('/register',[AuthController::class, 'registerProceed']);
+//Route::get('/register/activation/{token}',[AuthController::class, 'registerVerify']);
+//Route::get('/logout', function () {
+//    Auth::logout();
+//    session()->invalidate();
+//    session()->regenerateToken();
+//    return redirect('/login');
+//});
+Route::get('/',[HomeController::class,'index'])->name('home.index');
+Route::get('/product/{id}',[HomeController::class,'detailProduct'])->name('home.detailProduct');
+Route::get('/page{id}',[HomeController::class,'detailPage'])->name('home.detailPage');
+Route::get('/product',[HomeController::class,'semuaProduct'])->name('home.product');
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
-    Route::post('/login', [AuthController::class, 'verify'])->name('auth.verify');
-});
-
-Route::get('/register',[AuthController::class, 'register']);
-Route::post('/register',[AuthController::class, 'registerProceed']);
-Route::get('/register/activation/{token}',[AuthController::class, 'registerVerify']);
-Route::get('/logout', function () {
-    Auth::logout();
-    session()->invalidate();
-    session()->regenerateToken();
-    return redirect('/login');
-});
+Route::get('/login',[AuthController::class, 'index'])->name('auth.index')->middleware('guest');
+Route::post('/login',[AuthController::class, 'verify'])->name('auth.verify');
 
 
 Route::middleware(['auth:user'])->group(function () {
@@ -57,8 +69,36 @@ Route::middleware(['auth:user'])->group(function () {
         Route::post('/staff/prosesUbah', [StaffController::class, 'prosesUbah'])->name('staff.prosesUbah');
         Route::get('/staff/hapus/{id}', [StaffController::class, 'hapus'])->name('staff.hapus');
 
+        Route::get('/page',[App\Http\Controllers\PageController::class, 'index'])->name('page.index');
+        Route::get('/page/tambah',[App\Http\Controllers\PageController::class, 'tambah'])->name('page.tambah');
+        Route::post('/page/prosesTambah',[App\Http\Controllers\PageController::class, 'prosesTambah'])->name('page.prosesTambah');
+        Route::get('/page/ubah/{id}',[App\Http\Controllers\PageController::class, 'ubah'])->name('page.ubah');
+        Route::post('/page/prosesUbah',[App\Http\Controllers\PageController::class, 'prosesUbah'])->name('page.prosesUbah');
+        Route::get('/page/hapus/{id}',[App\Http\Controllers\PageController::class, 'hapus'])->name('page.hapus');
+
+        Route::get('/menu',[App\Http\Controllers\MenuController::class, 'index'])->name('menu.index');
+        Route::get('/menu/tambah',[App\Http\Controllers\MenuController::class, 'tambah'])->name('menu.tambah');
+        Route::post('/menu/prosesTambah',[App\Http\Controllers\MenuController::class, 'prosesTambah'])->name('menu.prosesTambah');
+        Route::get('/menu/ubah/{id}',[App\Http\Controllers\MenuController::class, 'ubah'])->name('menu.ubah');
+        Route::post('/menu/prosesUbah',[App\Http\Controllers\MenuController::class, 'prosesUbah'])->name('menu.prosesUbah');
+        Route::get('/menu/hapus/{id}',[App\Http\Controllers\MenuController::class, 'hapus'])->name('menu.hapus');
+        Route::get('/menu/order/{idMenu}/{idSwap}',[App\Http\Controllers\MenuController::class, 'order'])->name('menu.order');
+
     });
-        Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
+
+    Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
+        Route::get('/', [KasirController::class, 'index']);
+
+        Route::post('/search-barcode', [KasirController::class, 'searchProduct']);
+        Route::post('/insert', [KasirController::class, 'insert']);
+    });
+
+    Route::group(['prefix' => 'transaksi', 'middleware' => 'auth'], function () {
+        Route::get('/', [TransaksiController::class, 'index']);
+        Route::get('/{id}/pdf', [TransaksiController::class, 'printPDF']);
+    });
+
+    Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
     });
 
 Route::get('files/{filename}', function ($filename) {

@@ -7,23 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="{{asset('assets/css/custom-styles.css')}}" rel="stylesheet">
     <style>
-        .sidebar-dark{
-            background-color: #292929 !important;
-        }
-
-        .bg-success1{
-            background-color: #244A0A !important;
-        }
-
-        .bg-ungu{
-            background-color: #D3D3D3 !important;
-        }
-
-        .bg-success2{
-            background-color: #ebffe6 !important;
-        }
-
         body {
             background-image: url("{{ asset('assets/img/sambisari coffe.jpg') }}");
             background-size: cover;

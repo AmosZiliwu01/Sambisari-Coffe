@@ -12,9 +12,6 @@ class AuthController extends Controller
 {
     public function index()
     {
-        if (Auth::guard('user')->check()) {
-            return redirect()->route('home.index'); // Redirect if user is already logged in
-        }
         return view('auth.login');
     }
 

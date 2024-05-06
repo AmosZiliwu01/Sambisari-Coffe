@@ -13,10 +13,6 @@
             background-color: #292929 !important;
         }
 
-        .bg-success1{
-            background-color: #244A0A !important;
-        }
-
         .bg-ungu{
             background-color: #D3D3D3 !important;
         }
@@ -94,6 +90,11 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="{{url('/app')}}" class="nav-link">
+                <i class="nav-icon fas fa-cash-register"></i>
+                <span>App Kasir</span></a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('staff.index') }}">
@@ -102,17 +103,26 @@
             </a>
         </li>
 
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="{{ route('#') }}">--}}
-{{--                <i class="fas fa-fw fa-table"></i>--}}
-{{--                <span>Data Page</span></a>--}}
-{{--        </li>--}}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('page.index') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Page</span></a>
+        </li>
 
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="{{ route('#') }}">--}}
-{{--                <i class="fas fa-fw fa-table"></i>--}}
-{{--                <span>Data Menu</span></a>--}}
-{{--        </li>--}}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('menu.index') }}">
+                <i class="fas fa-fw fa-coffee"></i>
+                <span>Data Menu</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{url('/transaksi')}}" class="nav-link">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <span>Data Transaksi</span>
+            </a>
+        </li>
+
 
     </ul>
     <!-- End of Sidebar -->
@@ -386,6 +396,22 @@
 <!-- Page level custom scripts -->
 <script src={{asset("assets/js/demo/chart-area-demo.js")}}></script>
 <script src={{asset("assets/js/demo/chart-pie-demo.js")}}></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+<script>
+    $(function () {
+
+        @if(session()->has('gagal'))
+        toastr.error('{{Session::get('gagal')}}', 'Error')
+        @endif
+        @if(session()->has('berhasil'))
+        toastr.success('{{Session::get('berhasil')}}', 'Berhasil')
+        @endif
+    });
+</script>
+@stack('js')
 </body>
 
 </html>

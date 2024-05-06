@@ -2,15 +2,31 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $table = "product";
-    protected $primaryKey = "id_product";
-    protected $fillable = ["judul_product","isi_product","gambar_product","id_kategori"];
+    use HasFactory, SoftDeletes;
+
+    protected $table = "products";
+
+    protected $fillable = [
+        'barcode',
+        'name',
+        'price',
+        'gambar_product',
+        'id_kategori',
+        'total_views',
+        'isi_product'
+    ];
 
     public function kategori(){
         return $this->belongsTo(Kategori::class, 'id_kategori');
+    }
+    public function itemTransactions()
+    {
+        return $this->hasManyThrough(ItemTransaction::class, Transaction::class, 'id', 'id_transaction', 'id');
     }
 }
