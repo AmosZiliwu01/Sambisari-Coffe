@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
@@ -99,6 +100,13 @@ Route::middleware(['auth:user'])->group(function () {
     });
 
     Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
+    });
+    Route::group(['prefix' => 'feedback'], function () {
+        Route::get('/', [FeedbackController::class, 'index'])->name('feedback.index');
+        Route::get('/formTambah', [FeedbackController::class, 'formTambah'])->name('feedback.formTambah');
+        Route::post('/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
+        Route::get('/list', [FeedbackController::class, 'list'])->name('feedback.list');
+        Route::get('/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
     });
 
 Route::get('files/{filename}', function ($filename) {
