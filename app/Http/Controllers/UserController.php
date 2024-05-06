@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function indexnim()
     {
-        echo "Ini Index";
+        echo "aivon";
         echo "Ini Index 2";
     }
 }
