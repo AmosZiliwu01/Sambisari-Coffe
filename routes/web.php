@@ -85,6 +85,11 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/menu/hapus/{id}',[App\Http\Controllers\MenuController::class, 'hapus'])->name('menu.hapus');
         Route::get('/menu/order/{idMenu}/{idSwap}',[App\Http\Controllers\MenuController::class, 'order'])->name('menu.order');
 
+        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+        Route::get('/feedback/tambah', [FeedbackController::class, 'tambah'])->name('feedback.formTambah');
+        Route::post('/feedback/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
+        Route::get('/feedback/list', [FeedbackController::class, 'list'])->name('feedback.list');
+        Route::get('/feedback/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
     });
 
     Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
@@ -100,13 +105,6 @@ Route::middleware(['auth:user'])->group(function () {
     });
 
     Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
-    });
-    Route::group(['prefix' => 'feedback'], function () {
-        Route::get('/', [FeedbackController::class, 'index'])->name('feedback.index');
-        Route::get('/formTambah', [FeedbackController::class, 'formTambah'])->name('feedback.formTambah');
-        Route::post('/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
-        Route::get('/list', [FeedbackController::class, 'list'])->name('feedback.list');
-        Route::get('/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
     });
 
 Route::get('files/{filename}', function ($filename) {

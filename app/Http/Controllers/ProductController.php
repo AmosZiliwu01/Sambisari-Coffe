@@ -95,7 +95,7 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
 
         try {
-            $product->delete();
+            $products->delete();
             return redirect(route('product.index'))->with('pesan', ['success','Berhasil hapus product']);
         }catch (\Exception $e){
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal hapus product']);
