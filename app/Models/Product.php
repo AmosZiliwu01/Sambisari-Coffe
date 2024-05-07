@@ -25,7 +25,7 @@ class Product extends Model
     public function kategori(){
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }
-    public function itemTransactions()
+    public function ItemTransaction()
     {
         return $this->hasManyThrough(ItemTransaction::class, Transaction::class, 'id', 'id_transaction', 'id');
     }

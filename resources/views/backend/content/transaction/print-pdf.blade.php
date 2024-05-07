@@ -50,20 +50,19 @@
 <hr>
 <table class="data">
     <tr>
-        <th>Nama Product</th>
+        <th>Nama Barang</th>
         <th>@</th>
         <th>Qty</th>
         <th>Total</th>
     </tr>
     @foreach($row->ItemTransaction as $item)
         <tr>
-            <td>{{ $item->Product->name }}</td>
-            <td class="right">{{ number_format($item->price) }}</td>
-            <td class="right">{{ $item->qty }}</td>
-            <td class="right">{{ number_format($item->price * $item->qty) }}</td>
+            <td>{{$item->Product->name}}</td>
+            <td class="right">{{number_format($item->price)}}</td>
+            <td class="right">{{$item->qty}}</td>
+            <td class="right">{{number_format($item->price * $item->qty)}}</td>
         </tr>
     @endforeach
-
 </table>
 </body>
 </html>

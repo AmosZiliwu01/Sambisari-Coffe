@@ -17,6 +17,6 @@ class ItemTransaction extends Model
 
     public function Product()
     {
-        return $this->belongsTo(Product::class, 'id');
+        return $this->belongsTo(Product::class, 'id_product');
     }
 }

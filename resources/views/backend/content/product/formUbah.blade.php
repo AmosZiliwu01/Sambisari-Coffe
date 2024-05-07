@@ -25,7 +25,7 @@
                         <span style="color: red; font-weight: 600; font-size: 9pt;">{{ $message }}</span>
                         @enderror
                         <p></p>
-                        <img id="tampilFoto" onerror="this.onerror=null;this.src='https://t4.ftcdn,net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly70B0510O5KABlN930GwaMQz.jpg';" src="{{ route('product',$product->gambar_product) }}" alt="" width="15%">
+                        <img id="tampilFoto" onerror="this.onerror=null;this.src='https://t4.ftcdn,net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly70B0510O5KABlN930GwaMQz.jpg';" src="{{ route('storage',$product->gambar_product) }}" alt="" width="15%">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Barcode</label>

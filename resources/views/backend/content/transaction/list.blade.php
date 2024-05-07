@@ -1,7 +1,10 @@
 @extends('backend.layout.main')
-@section('judul','Data Transaksi')
 
 @section('content')
+    <div class="container-fluid">
+        <div class="col-lg-6">
+            <h1 class="h3 mb-2 text-gray-800">List Product</h1>
+        </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -44,5 +47,5 @@
             </div>
         </div>
     </div>
-
+    </div>
 @endsection

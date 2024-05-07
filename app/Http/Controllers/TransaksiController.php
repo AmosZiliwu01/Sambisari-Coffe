@@ -18,7 +18,8 @@ class TransaksiController extends Controller
 
     public function printPDF($id)
     {
-        $row = Transaction::query()->with('ItemTransaction.Product')->first();
+        // Mengambil transaksi berdasarkan ID yang diberikan
+        $row = Transaction::query()->with('ItemTransaction.Product')->find($id);
         if ($row === null) {
             abort(404);
         }
@@ -26,6 +27,6 @@ class TransaksiController extends Controller
         $pdf = Pdf::loadView('backend.content.transaction.print-pdf', ['row' => $row])
             ->setPaper('A4');
         return $pdf->stream('Invoice ' . $row->code . '.pdf');
-
     }
+
 }

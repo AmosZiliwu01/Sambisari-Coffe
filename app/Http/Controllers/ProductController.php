@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::query()->paginate(5);
-        return view('backend.content.product.list', compact('products'));
+        return view('backend.content.product.list', ['products' => $products]);
 
     }
 
@@ -34,16 +34,16 @@ class ProductController extends Controller
         $request->file('gambar_product')->store('public');
         $gambar_product = $request->file('gambar_product')->hashName();
 
-        $products = new Product();
-        $products->barcode = $request->barcode;
-        $products->name = $request->name;
-        $products->price = $request->price;
-        $products->isi_product = $request->isi_product;
-        $products->id_kategori = $request->id_kategori;
-        $products->gambar_product = $gambar_product;
+        $product = new Product();
+        $product->barcode = $request->barcode;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->isi_product = $request->isi_product;
+        $product->id_kategori = $request->id_kategori;
+        $product->gambar_product = $gambar_product;
 
         try {
-            $products->save();
+            $product->save();
             return redirect(route('product.index'))->with('pesan', ['success', 'Berhasil tambah product']);
         } catch (\Exception $e) {
             return redirect(route('product.index'))->with('pesan', ['danger', 'Gagal tambah product']);
@@ -54,8 +54,8 @@ class ProductController extends Controller
     public function ubah($id)
     {
         $kategori = Kategori::all();
-        $products = Product::findOrFail($id);
-        return view('backend.content.product.formUbah', compact('products','kategori'));
+        $product = Product::findOrFail($id);
+        return view('backend.content.product.formUbah', compact('product','kategori'));
     }
 
     public function prosesUbah(Request $request)
@@ -68,21 +68,21 @@ class ProductController extends Controller
             'id_kategori' => 'required',
         ]);
 
-        $products = Product::findOrFail($request->id);
-        $products->barcode = $request->barcode;
-        $products->name = $request->name;
-        $products->price = $request->price;
-        $products->isi_product = $request->isi_product;
-        $products->id_kategori = $request->id_kategori;
+        $product = Product::findOrFail($request->id);
+        $product->barcode = $request->barcode;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->isi_product = $request->isi_product;
+        $product->id_kategori = $request->id_kategori;
 
         if($request->hasFile('gambar_product')){
             $request->file('gambar_product')->store('public');
             $gambar_product = $request->file('gambar_product')->hashName();
-            $products->gambar_product = $gambar_product;
+            $product->gambar_product = $gambar_product;
         }
 
         try {
-            $products->save();
+            $product->save();
             return redirect(route('product.index'))->with('pesan', ['success','Berhasil ubah product']);
         }catch (\Exception $e){
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal ubah product']);
@@ -92,10 +92,10 @@ class ProductController extends Controller
 
     public function hapus($id)
     {
-        $products = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
 
         try {
-            $products->delete();
+            $product->delete();
             return redirect(route('product.index'))->with('pesan', ['success','Berhasil hapus product']);
         }catch (\Exception $e){
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal hapus product']);
