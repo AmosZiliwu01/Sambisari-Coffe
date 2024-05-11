@@ -109,6 +109,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('berita.index') }}">
+                <i class="fas fa-fw fa-tags"></i>
+                <span>Data Berita</span>
+            </a>
+        </li>
+
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link" href="{{ route('#') }}">--}}
 {{--                <i class="fas fa-fw fa-table"></i>--}}

@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbackController;
+
+//
+//Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+//Route::get('/berita/{id}',[App\Http\Controllers\HomeController::class, 'detailBerita'])->name('home.detailBerita');
+//Route::get('/page/{id}',[App\Http\Controllers\HomeController::class, 'detailPage'])->name('home.detailPage');
+//Route::get('/berita',[App\Http\Controllers\HomeController::class, 'semuaBerita'])->name('home.berita');
+
+
 #tes git
 Route::get('/', function () {
     return redirect()->route('auth.index');
@@ -57,6 +65,14 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/staff/ubah/{id}', [StaffController::class, 'ubah'])->name('staff.ubah');
         Route::post('/staff/prosesUbah', [StaffController::class, 'prosesUbah'])->name('staff.prosesUbah');
         Route::get('/staff/hapus/{id}', [StaffController::class, 'hapus'])->name('staff.hapus');
+
+
+        Route::get('/berita',[App\Http\Controllers\BeritaController::class, 'index'])->name('berita.index');
+        Route::get('/berita/tambah',[App\Http\Controllers\BeritaController::class, 'tambah'])->name('berita.tambah');
+        Route::post('/berita/prosesTambah',[App\Http\Controllers\BeritaController::class, 'prosesTambah'])->name('berita.prosesTambah');
+        Route::get('/berita/ubah/{id}',[App\Http\Controllers\BeritaController::class, 'ubah'])->name('berita.ubah');
+        Route::post('/berita/prosesUbah',[App\Http\Controllers\BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
+        Route::get('/berita/hapus/{id}',[App\Http\Controllers\BeritaController::class, 'hapus'])->name('berita.hapus');
 
     });
         Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
