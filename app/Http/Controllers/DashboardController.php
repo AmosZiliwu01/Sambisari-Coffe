@@ -25,10 +25,9 @@ class DashboardController extends Controller
 
     public function profile()
     {
-        return view('backend.content.profile');
-        $id = Auth::guard('user')->user()->id;
-        $user = User::findOrFail($id);
-        return view('backend.content.profile',compact('user'));
+    $id = Auth::guard('user')->user()->id;
+    $user = User::findOrFail($id);
+    return view('backend.content.profile', compact('user'));
     }
 
     public function resetPassword(){
