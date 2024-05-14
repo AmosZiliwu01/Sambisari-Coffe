@@ -117,25 +117,18 @@
         </li>
 
         <li class="nav-item">
-<<<<<<< HEAD
             <a class="nav-link" href="{{ route('berita.index') }}">
                 <i class="fas fa-fw fa-tags"></i>
                 <span>Data Berita</span>
             </a>
         </li>
 
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="{{ route('#') }}">--}}
-{{--                <i class="fas fa-fw fa-table"></i>--}}
-{{--                <span>Data Page</span></a>--}}
-{{--        </li>--}}
-=======
+        <li class="nav-item">
             <a href="{{url('/transaksi')}}" class="nav-link">
                 <i class="nav-icon fas fa-shopping-cart"></i>
                 <span>Data Transaksi</span>
             </a>
         </li>
->>>>>>> 4b637954d9197038a23cb9be87d5fb4c089ad812
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('feedback.index') }}">
