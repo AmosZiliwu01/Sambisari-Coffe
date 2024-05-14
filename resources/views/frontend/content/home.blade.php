@@ -84,7 +84,7 @@
             </div>
             <div class="text-end mb-5 mb-xl-0">
                 <a class="text-decoration-none" href="{{route('home.product')}}">
-                    More stories
+                    More Product
                     <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
