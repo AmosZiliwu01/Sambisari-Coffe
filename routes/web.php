@@ -73,6 +73,14 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/berita/hapus/{id}',[App\Http\Controllers\BeritaController::class, 'hapus'])->name('berita.hapus');
 
 
+        Route::get('/promosi',[App\Http\Controllers\PromosiController::class, 'index'])->name('promosi.index');
+        Route::get('/promosi/tambah',[App\Http\Controllers\PromosiController::class, 'tambah'])->name('promosi.tambah');
+        Route::post('/promosi/prosesTambah',[App\Http\Controllers\PromosiController::class, 'prosesTambah'])->name('promosi.prosesTambah');
+        Route::get('/promosi/ubah/{id}',[App\Http\Controllers\PromosiController::class, 'ubah'])->name('promosi.ubah');
+        Route::post('/promosi/prosesUbah',[App\Http\Controllers\PromosiController::class, 'prosesUbah'])->name('promosi.prosesUbah');
+        Route::get('/promosi/hapus/{id}',[App\Http\Controllers\PromosiController::class, 'hapus'])->name('promosi.hapus');
+
+
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
         Route::get('/feedback/tambah', [FeedbackController::class, 'tambah'])->name('feedback.formTambah');
         Route::post('/feedback/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
