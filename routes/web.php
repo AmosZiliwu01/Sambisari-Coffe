@@ -64,6 +64,15 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/menu/hapus/{id}', [App\Http\Controllers\MenuController::class, 'hapus'])->name('menu.hapus');
         Route::get('/menu/order/{idMenu}/{idSwap}', [App\Http\Controllers\MenuController::class, 'order'])->name('menu.order');
 
+
+        Route::get('/berita',[App\Http\Controllers\BeritaController::class, 'index'])->name('berita.index');
+        Route::get('/berita/tambah',[App\Http\Controllers\BeritaController::class, 'tambah'])->name('berita.tambah');
+        Route::post('/berita/prosesTambah',[App\Http\Controllers\BeritaController::class, 'prosesTambah'])->name('berita.prosesTambah');
+        Route::get('/berita/ubah/{id}',[App\Http\Controllers\BeritaController::class, 'ubah'])->name('berita.ubah');
+        Route::post('/berita/prosesUbah',[App\Http\Controllers\BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
+        Route::get('/berita/hapus/{id}',[App\Http\Controllers\BeritaController::class, 'hapus'])->name('berita.hapus');
+
+
         Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
         Route::get('/feedback/tambah', [FeedbackController::class, 'tambah'])->name('feedback.formTambah');
         Route::post('/feedback/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
