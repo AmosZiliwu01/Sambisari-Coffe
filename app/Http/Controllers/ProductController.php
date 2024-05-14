@@ -2,63 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Kategori;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::with('kategori')->get();
-        return view('backend.content.product.list', compact('product'));
+        $products = Product::query()->paginate(5);
+        return view('backend.content.product.list', ['products' => $products]);
+
     }
+
     public function tambah()
     {
         $kategori = Kategori::all();
         return view('backend.content.product.formtambah', compact('kategori'));
     }
+
     public function prosesTambah(Request $request)
     {
         $this->validate($request, [
-            'judul_product' => 'required',
-            'isi_product' => 'required' ,
-            'id_kategori' => 'required' ,
-            'gambar_product' => 'required'
+            'barcode' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'isi_product' => 'required',
+            'gambar_product' => 'required', // tambahkan validasi untuk tipe gambar dan ukuran maksimal
         ]);
 
         $request->file('gambar_product')->store('public');
         $gambar_product = $request->file('gambar_product')->hashName();
 
         $product = new Product();
-        $product->judul_product = $request->judul_product;
+        $product->barcode = $request->barcode;
+        $product->name = $request->name;
+        $product->price = $request->price;
         $product->isi_product = $request->isi_product;
         $product->id_kategori = $request->id_kategori;
         $product->gambar_product = $gambar_product;
 
         try {
             $product->save();
-            return redirect(route('product.index'))->with('pesan', ['success','Berhasil tambah product']);
-        }catch (\Exception $e){
-            return redirect(route('product.index'))->with('pesan', ['danger','Gagal tambah product']);
+            return redirect(route('product.index'))->with('pesan', ['success', 'Berhasil tambah product']);
+        } catch (\Exception $e) {
+            return redirect(route('product.index'))->with('pesan', ['danger', 'Gagal tambah product']);
         }
     }
+
+
     public function ubah($id)
     {
         $kategori = Kategori::all();
         $product = Product::findOrFail($id);
-        return view('backend.content.product.formUbah', compact('product', 'kategori'));
+        return view('backend.content.product.formUbah', compact('product','kategori'));
     }
-    public function prosesubah(Request $request)
+
+    public function prosesUbah(Request $request)
     {
         $this->validate($request, [
-            'judul_product' => 'required',
-            'isi_product' => 'required' ,
-            'id_kategori' => 'required'
+            'barcode' => 'required',
+            'name' => 'required',
+            'price' => 'required',
+            'isi_product' => 'required',
+            'id_kategori' => 'required',
         ]);
 
-        $product = Product::findOrFail($request->id_product);
-        $product->judul_product = $request->judul_product;
+        $product = Product::findOrFail($request->id);
+        $product->barcode = $request->barcode;
+        $product->name = $request->name;
+        $product->price = $request->price;
         $product->isi_product = $request->isi_product;
         $product->id_kategori = $request->id_kategori;
 
@@ -76,6 +89,7 @@ class ProductController extends Controller
         }
 
     }
+
     public function hapus($id)
     {
         $product = Product::findOrFail($id);

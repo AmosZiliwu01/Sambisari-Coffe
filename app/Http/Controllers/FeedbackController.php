@@ -54,15 +54,15 @@ class FeedbackController extends Controller
         }
     }
 
-    public function list()
-    {
-        $feedbacks = Feedback::all();
-        return view('backend.content.feedback.list', compact('feedbacks'));
-    }
-
-    public function formTambah()
-    {
-        return view('backend.content.feedback.formTambah');
-    }
+//    public function list()
+//    {
+//        $feedbacks = Feedback::all();
+//        return view('backend.content.feedback.list', compact('feedbacks'));
+//    }
+//
+//    public function formTambah()
+//    {
+//        return view('backend.content.feedback.formTambah');
+//    }
 
 }

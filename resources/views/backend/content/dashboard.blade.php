@@ -1,4 +1,5 @@
 @extends('backend.layout.main')
+@section('judul','Dashboard')
 @section('content')
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -102,7 +103,7 @@
                                     <tr>
                                         <td><img src="{{ route('storage',$row->gambar_product) }}" width="50px"
                                                  height="50px"></td>
-                                        <td>{{ ($row->judul_product) }}</td>
+                                        <td>{{ ($row->name) }}</td>
                                         <td>{{ ($row->kategori->nama_kategori) }}</td>
                                         <td>{{ ($row->total_views) }}x</td>
                                     </tr>

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Staff User',
             'email' => 'staff@example.com',
-            'password' => Hash::make('staff@example.com'), // Encrypt the password
+            'password' => Hash::make('staff@example.com'),
             'role' => 'staff',
         ]);
 
@@ -27,8 +27,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
-            'password' => Hash::make('admin@example.com'), // Encrypt the password
-            'role' => 'admin',
+            'password' => Hash::make('admin@example.com'),
         ]);
 
         // Menambahkan data staf secara langsung ke dalam tabel 'staffs'
@@ -38,5 +37,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'budi@gmail.com',
             'tanggung_jawab' => 'Menyiapkan pesanan'
         ]);
+
     }
+
 }
