@@ -7,6 +7,7 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TransaksiController;
@@ -40,6 +41,9 @@ Route::get('/product',[HomeController::class,'semuaProduct'])->name('home.produc
 Route::get('/login',[AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 Route::post('/login',[AuthController::class, 'verify'])->name('auth.verify');
 
+Route::get('/register', [AuthController::class, 'register'])->name('register.index')->middleware('guest');
+Route::post('/register', [AuthController::class, 'registerProceed'])->name('auth.register.proceed')->middleware('guest');
+Route::get('/register/activation/{token}', [AuthController::class, 'registerVerify'])->name('auth.register.activation')->middleware('guest');
 
 Route::middleware(['auth:user'])->group(function () {
     Route::prefix('admin')->group(function (){
@@ -90,6 +94,9 @@ Route::middleware(['auth:user'])->group(function () {
         Route::post('/feedback/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
         Route::get('/feedback/list', [FeedbackController::class, 'list'])->name('feedback.list');
         Route::get('/feedback/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
+
+        Route::get('/user', [UserController::class, 'index'])->name('user.index');
+        Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
     });
 
     Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {

@@ -38,6 +38,12 @@
                         <span class="sign-text">Sign in</span>
                     </button>
 
+                    <div class="text-right">
+                        <a href="{{ route('register.index') }}" class="btn-user btn-block">
+                            Create an account
+                        </a>
+                    </div>
+
                     <div class="text-center">
                         <span class="small">or sign in with</span>
                     </div>
@@ -46,10 +52,6 @@
                             <i class="h1 fab fa-google fa-fw"></i>
                         </a>
                     </div>
-                    {{-- <p class="signup-link">
-                        No account?
-                        <a href="" class="up">Sign up!</a>
-                    </p> --}}
                 </form>
             </div>
 
