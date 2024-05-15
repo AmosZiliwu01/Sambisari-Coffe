@@ -125,7 +125,14 @@
         </li>
 
         <li class="nav-item">
-            <a href="{{url('/transaksi')}}" class="nav-link">
+            <a class="nav-link" href="{{ route('berita.index') }}">
+                <i class="fas fa-fw fa-tags"></i>
+                <span>Data Berita</span>
+            </a>
+        <li/>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('/transaksi')}}">
                 <i class="nav-icon fas fa-fw fa-shopping-cart"></i>
                 <span>Data Transaksi</span>
             </a>
@@ -331,9 +338,9 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('dashboard.resetPassword')}}">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
+                                Reset Password
                             </a>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>

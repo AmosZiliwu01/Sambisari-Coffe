@@ -1,6 +1,5 @@
 @extends('backend/layout/main')
 @section('content')
-    ini profile user
     <div class="container-fluid">
         <h1 class="h3 mb-2 text-gray-800">Profile User</h1>
 

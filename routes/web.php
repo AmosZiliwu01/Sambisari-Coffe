@@ -7,32 +7,13 @@ use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
-#tes git
-//Route::get('/', function () {
-//    return redirect()->route('auth.index');
-//});
-//
-//Route::middleware(['guest'])->group(function () {
-//    Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
-//    Route::post('/login', [AuthController::class, 'verify'])->name('auth.verify');
-//});
-//
-//Route::get('/register',[AuthController::class, 'register']);
-//Route::post('/register',[AuthController::class, 'registerProceed']);
-//Route::get('/register/activation/{token}',[AuthController::class, 'registerVerify']);
-//Route::get('/logout', function () {
-//    Auth::logout();
-//    session()->invalidate();
-//    session()->regenerateToken();
-//    return redirect('/login');
-//});
+
 Route::get('/',[HomeController::class,'index'])->name('home.index');
 Route::get('/product/{id}',[HomeController::class,'detailProduct'])->name('home.detailProduct');
 Route::get('/page{id}',[HomeController::class,'detailPage'])->name('home.detailPage');
@@ -41,9 +22,9 @@ Route::get('/product',[HomeController::class,'semuaProduct'])->name('home.produc
 Route::get('/login',[AuthController::class, 'index'])->name('auth.index')->middleware('guest');
 Route::post('/login',[AuthController::class, 'verify'])->name('auth.verify');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register.index')->middleware('guest');
-Route::post('/register', [AuthController::class, 'registerProceed'])->name('auth.register.proceed')->middleware('guest');
-Route::get('/register/activation/{token}', [AuthController::class, 'registerVerify'])->name('auth.register.activation')->middleware('guest');
+Route::get('/register',[AuthController::class, 'register'])->name('register.index')->middleware('guest');
+Route::post('/register',[AuthController::class, 'registerProceed'])->name('register.verify');;
+Route::get('/register/activation/{token}',[AuthController::class, 'registerVerify']);
 
 Route::middleware(['auth:user'])->group(function () {
     Route::prefix('admin')->group(function (){
@@ -95,8 +76,16 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/feedback/list', [FeedbackController::class, 'list'])->name('feedback.list');
         Route::get('/feedback/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
 
-        Route::get('/user', [UserController::class, 'index'])->name('user.index');
-        Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
+        Route::get('/berita',[App\Http\Controllers\BeritaController::class, 'index'])->name('berita.index');
+        Route::get('/berita/tambah',[App\Http\Controllers\BeritaController::class, 'tambah'])->name('berita.tambah');
+        Route::post('/berita/prosesTambah',[App\Http\Controllers\BeritaController::class, 'prosesTambah'])->name('berita.prosesTambah');
+        Route::get('/berita/ubah/{id}',[App\Http\Controllers\BeritaController::class, 'ubah'])->name('berita.ubah');
+        Route::post('/berita/prosesUbah',[App\Http\Controllers\BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
+        Route::get('/berita/hapus/{id}',[App\Http\Controllers\BeritaController::class, 'hapus'])->name('berita.hapus');
+
+        Route::get('/user', [FeedbackController::class, 'index'])->name('user.index');
+        Route::get('/user/hapus/{id}', [FeedbackController::class, 'hapus'])->name('user.hapus');
+
     });
 
     Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
