@@ -44,7 +44,7 @@
     <ul class="sidebar-dark navbar-nav sidebar accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard.index') }}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center bg-success1" href="index.html">
             <div class="sidebar-brand-icon rotate-n-15">
             </div>
             <div class="sidebar-brand-text mx-3">SAMBISARI <i class="text-danger">COFFE</i></div>
@@ -90,7 +90,6 @@
             </a>
         </li>
 
-
         <li class="nav-item">
             <a href="{{url('/app')}}" class="nav-link">
                 <i class="nav-icon fas fa-fw fa-cash-register"></i>
@@ -125,8 +124,9 @@
         </li>
 
         <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link" href="{{ route('berita.index') }}">
-                <i class="fas fa-fw fa-tags"></i>
+                <i class="fas fa-fw fa-newspaper"></i>
                 <span>Data Berita</span>
             </a>
         <li/>
