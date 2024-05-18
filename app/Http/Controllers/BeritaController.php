@@ -28,14 +28,18 @@ class BeritaController extends Controller
             'id_kategori' => 'required',
             'gambar_berita' => 'required',
         ]);
+
+        // Simpan gambar ke penyimpanan dan dapatkan nama file yang diunggah
         $request->file('gambar_berita')->store('public');
-        $gambar_berita = $request->file('gambar_berita')->hashName();
+
+        // Dapatkan nama hash unik untuk file yang diunggah
+        $gambar_berita_hash = $request->file('gambar_berita')->hashName();
 
         $berita = new Berita();
         $berita->judul_berita = $request->judul_berita;
         $berita->isi_berita = $request->isi_berita;
         $berita->id_kategori = $request->id_kategori;
-        $berita->gambar_berita = $request->gambar_berita;
+        $berita->gambar_berita = $gambar_berita_hash; // Simpan nama hash file ke dalam database
 
         try {
             $berita->save();
@@ -44,7 +48,6 @@ class BeritaController extends Controller
             return redirect(route('berita.index'))->with('pesan', ['danger', 'Gagal tambah berita']);
         }
     }
-
     public function ubah($id)
     {
         $berita = Berita::findOrFail($id);

@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Staff User',
             'email' => 'staff@example.com',
             'password' => Hash::make('staff@example.com'),
-            'role' => 'staff',
         ]);
 
         // Menambahkan pengguna untuk admin

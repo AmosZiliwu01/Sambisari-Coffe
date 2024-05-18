@@ -77,70 +77,73 @@
         </div>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('product.index') }}">
-                <i class="fas fa-fw fa-shopping-bag"></i>
-                <span>Data Product</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
             <a class="nav-link" href="{{ route('kategori.index') }}">
-                <i class="fas fa-fw fa-tags"></i>
+                <i class="nav-icon fas fa-fw fa-tags"></i>
                 <span>Data Kategori</span>
             </a>
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('product.index') }}">
+                <i class="nav-icon fas fa-fw fa-shopping-bag"></i>
+                <span>Data Product</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a href="{{url('/app')}}" class="nav-link">
-                <i class="nav-icon fas fa-cash-register"></i>
+                <i class="nav-icon fas fa-fw fa-cash-register"></i>
                 <span>App Kasir</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('staff.index') }}">
-                <i class="fas fa-fw fa-user-tie"></i>
+                <i class="nav-icon fas fa-fw fa-user-tie"></i>
                 <span>Data Staff</span>
             </a>
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.index') }}">
+                <i class="nav-icon fas fa-fw fa-user"></i>
+                <span>Data User</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('page.index') }}">
-                <i class="fas fa-fw fa-table"></i>
+                <i class="nav-icon fas fa-fw fa-table"></i>
                 <span>Data Page</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('menu.index') }}">
-                <i class="fas fa-fw fa-coffee"></i>
+                <i class="nav-icon fas fa-fw fa-coffee"></i>
                 <span>Data Menu</span>
             </a>
         </li>
-
-
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('berita.index') }}">
                 <i class="fas fa-fw fa-newspaper"></i>
                 <span>Data Berita</span>
             </a>
-        </li>
+        <li/>
 
-
-
-
-        {{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="{{ route('#') }}">--}}
-{{--                <i class="fas fa-fw fa-table"></i>--}}
-{{--                <span>Data Page</span></a>--}}
-{{--        </li>--}}
-
-            <a href="{{url('/transaksi')}}" class="nav-link">
-                <i class="nav-icon fas fa-shopping-cart"></i>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('/transaksi')}}">
+                <i class="nav-icon fas fa-fw fa-shopping-cart"></i>
                 <span>Data Transaksi</span>
             </a>
         </li>
 
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('feedback.index') }}">
+                <i class="nav-icon fas fa-fw fa-comment"></i>
+                <span>Data Feedback</span>
+            </a>
+        </li>
 
     </ul>
     <!-- End of Sidebar -->
@@ -323,7 +326,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link" data-toggle="dropdown" href="#">
                             @if(auth()->check())
-                                <span style="margin-right: 10px;">{{ auth()->user()->email }}</span>
+                                <span style="margin-right: 10px;">{{ auth()->user()->name }}</span>
                             @endif
                             <img class="img-profile rounded-circle" src="{{ asset('assets/img/undraw_profile.svg') }}">
                         </a>
