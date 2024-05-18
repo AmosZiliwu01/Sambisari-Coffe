@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
@@ -11,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BeritaController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/product/{id}', [HomeController::class, 'detailProduct'])->name('home.detailProduct');
@@ -26,6 +26,13 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
         Route::get('/reset-password', [DashboardController::class, 'resetPassword'])->name('dashboard.resetPassword');
         Route::post('/reset-password', [DashboardController::class, 'prosesResetPassword'])->name('dashboard.prosesResetPassword');
+
+        Route::get('/berita',[BeritaController::class, 'index'])->name('berita.index');
+        Route::get('/berita/tambah',[BeritaController::class, 'tambah'])->name('berita.tambah');
+        Route::post('/berita/prosesTambah',[BeritaController::class, 'prosesTambah'])->name('berita.prosesTambah');
+        Route::get('/berita/ubah/{id}',[BeritaController::class, 'ubah'])->name('berita.ubah');
+        Route::post('/berita/prosesUbah',[BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
+        Route::get('/berita/hapus/{id}',[BeritaController::class, 'hapus'])->name('berita.hapus');
 
         Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
         Route::get('/kategori/tambah', [KategoriController::class, 'tambah'])->name('kategori.tambah');
@@ -64,29 +71,7 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/menu/hapus/{id}', [App\Http\Controllers\MenuController::class, 'hapus'])->name('menu.hapus');
         Route::get('/menu/order/{idMenu}/{idSwap}', [App\Http\Controllers\MenuController::class, 'order'])->name('menu.order');
 
-
-        Route::get('/berita',[App\Http\Controllers\BeritaController::class, 'index'])->name('berita.index');
-        Route::get('/berita/tambah',[App\Http\Controllers\BeritaController::class, 'tambah'])->name('berita.tambah');
-        Route::post('/berita/prosesTambah',[App\Http\Controllers\BeritaController::class, 'prosesTambah'])->name('berita.prosesTambah');
-        Route::get('/berita/ubah/{id}',[App\Http\Controllers\BeritaController::class, 'ubah'])->name('berita.ubah');
-        Route::post('/berita/prosesUbah',[App\Http\Controllers\BeritaController::class, 'prosesUbah'])->name('berita.prosesUbah');
-        Route::get('/berita/hapus/{id}',[App\Http\Controllers\BeritaController::class, 'hapus'])->name('berita.hapus');
-
-
-        Route::get('/promosi',[App\Http\Controllers\PromosiController::class, 'index'])->name('promosi.index');
-        Route::get('/promosi/tambah',[App\Http\Controllers\PromosiController::class, 'tambah'])->name('promosi.tambah');
-        Route::post('/promosi/prosesTambah',[App\Http\Controllers\PromosiController::class, 'prosesTambah'])->name('promosi.prosesTambah');
-        Route::get('/promosi/ubah/{id}',[App\Http\Controllers\PromosiController::class, 'ubah'])->name('promosi.ubah');
-        Route::post('/promosi/prosesUbah',[App\Http\Controllers\PromosiController::class, 'prosesUbah'])->name('promosi.prosesUbah');
-        Route::get('/promosi/hapus/{id}',[App\Http\Controllers\PromosiController::class, 'hapus'])->name('promosi.hapus');
-
-
-        Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
-        Route::get('/feedback/tambah', [FeedbackController::class, 'tambah'])->name('feedback.formTambah');
-        Route::post('/feedback/prosesTambah', [FeedbackController::class, 'prosesTambah'])->name('feedback.prosesTambah');
-        Route::get('/feedback/list', [FeedbackController::class, 'list'])->name('feedback.list');
-        Route::get('/feedback/hapus/{id}', [FeedbackController::class, 'hapus'])->name('feedback.hapus');
-    });
+ });
 
     Route::group(['prefix' => 'app', 'middleware' => 'auth'], function () {
         Route::get('/', [KasirController::class, 'index']);

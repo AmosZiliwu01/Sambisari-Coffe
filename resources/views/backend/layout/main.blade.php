@@ -117,12 +117,6 @@
         </li>
 
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('promosi.index') }}">
-                <i class="fas fa-fw fa-coffee"></i>
-                <span>Data Promosi</span>
-            </a>
-        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('berita.index') }}">
@@ -147,12 +141,6 @@
         </li>
 
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('feedback.index') }}">
-                <i class="nav-icon fas fa-comment"></i>
-                <span>Data Feedback</span>
-            </a>
-        </li>
 
     </ul>
     <!-- End of Sidebar -->
