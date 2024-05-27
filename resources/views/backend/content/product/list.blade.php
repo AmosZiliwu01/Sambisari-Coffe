@@ -5,9 +5,11 @@
             <div class="col-lg-6">
                 <h1 class="h3 mb-2 text-gray-800">List Product</h1>
             </div>
+            @can('kasir')
             <div class="col-lg-6 text-right">
                 <a href="{{ route('product.tambah') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
             </div>
+            @endcan
         </div>
 
         @if(session()->has('pesan'))
@@ -30,7 +32,9 @@
                             <th>Deskripsi Product</th>
                             <th>Price</th>
                             <th>Kategori</th>
+                            @can('kasir')
                             <th>Aksi</th>
+                            @endcan
                         </tr>
                         </thead>
                         <tbody>
@@ -46,10 +50,12 @@
                                 <td>{{ $product->isi_product }}</td> <!-- Display isi_product -->
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->kategori->nama_kategori }}</td>
+                                @can('kasir')
                                 <td>
                                     <a href="{{ route('product.ubah', $product->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i> Ubah</a>
                                     <a href="{{ route('product.hapus', $product->id) }}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary btn-danger"><i class="fa fa-trash"> </i> Hapus</a>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                         </tbody>

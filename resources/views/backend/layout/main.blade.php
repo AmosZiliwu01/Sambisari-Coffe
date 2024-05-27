@@ -92,11 +92,17 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        @can('adminOrKasir')
         <div class="sidebar-heading">
             Master
         </div>
-
+        @can('pelangganOrKasir')
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('pesanan.index') }}">
+                    <i class="nav-icon fas fa-fw fa-receipt"></i>
+                    <span>Data Pesanan</span>
+                </a>
+            </li>
+        @endcan
         <li class="nav-item">
             <a class="nav-link" href="{{ route('kategori.index') }}">
                 <i class="nav-icon fas fa-fw fa-tags"></i>
@@ -110,20 +116,11 @@
                 <span>Data Product</span>
             </a>
         </li>
-        @endcan
         @can('pelanggan')
         <li class="nav-item">
             <a href="{{url('/app')}}" class="nav-link">
                 <i class="nav-icon fas fa-fw fa-cash-register"></i>
                 <span>App Kasir</span>
-            </a>
-        </li>
-        @endcan
-        @can('pelangganOrKasir')
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('pesanan.index') }}">
-                <i class="nav-icon fas fa-fw fa-receipt"></i>
-                <span>Data Pesanan</span>
             </a>
         </li>
         @endcan

@@ -24,9 +24,25 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update Profile</button>
-                    <a href="{{ route('dashboard.index') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ routeForRole() }}" class="btn btn-secondary">Kembali</a> <!-- Dynamic route for role -->
                 </form>
             </div>
         </div>
     </div>
 @endsection
+
+@php
+    function routeForRole() {
+        $role = auth()->user()->role;
+        switch ($role) {
+            case 'admin':
+                return route('dashboard.index');
+            case 'kasir':
+                return route('kategori.index');
+            case 'pelanggan':
+                return route('pesanan.index');
+            default:
+                return route('http://127.0.0.1:8000/'); // Default route if role is not recognized
+        }
+    }
+@endphp

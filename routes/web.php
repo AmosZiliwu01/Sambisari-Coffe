@@ -33,7 +33,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth:user'])->group(function () {
     Route::prefix('admin')->middleware('role:admin')->group(function (){
         Route::get('/',[DashboardController::class, 'index'])->name('dashboard.index')->middleware('role.admin');
-        Route::get('/profile',[DashboardController::class, 'profile'])->name('dashboard.profile');
 
         Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
         Route::get('/staff/tambah', [StaffController::class, 'tambah'])->name('staff.tambah');
@@ -71,6 +70,7 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/pesanan/{id}/status/{status}', [PesananController::class, 'updateStatus'])->name('pesanan.updateStatus');
         Route::get('/pesanan/delete-all', [PesananController::class, 'deleteAll'])->name('pesanan.deleteAll');
 
+        Route::get('/dashboard/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
         Route::get('/profile', [UserController::class, 'profile'])->name('profile.index');
         Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
         Route::get('/profile/updateProfile',[UserController::class, 'updateProfile'])->name('user.updateProfile');
@@ -94,19 +94,22 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/transaksi/delete/{id}', [TransaksiController::class, 'delete'])->name('transaksi.delete');
 
         Route::get('/kategori',[KategoriController::class, 'index'])->name('kategori.index');
-        Route::get('/kategori/tambah',[KategoriController::class, 'tambah'])->name('kategori.tambah');
-        Route::post('/kategori/prosesTambah',[KategoriController::class, 'prosesTambah'])->name('kategori.prosesTambah');
+        Route::middleware(['role:admin,kasir'])->group(function () {
+            Route::get('/kategori/tambah',[KategoriController::class, 'tambah'])->name('kategori.tambah');
+            Route::post('/kategori/prosesTambah',[KategoriController::class, 'prosesTambah'])->name('kategori.prosesTambah');
+        });
         Route::get('/kategori/ubah/{id}',[KategoriController::class, 'ubah'])->name('kategori.ubah');
         Route::post('/kategori/prosesUbah',[KategoriController::class, 'prosesUbah'])->name('kategori.prosesUbah');
         Route::get('/kategori/hapus/{id}',[KategoriController::class, 'hapus'])->name('kategori.hapus');
 
+        Route::middleware(['role:admin,kasir'])->group(function () {
+            Route::get('/product/tambah',[ProductController::class, 'tambah'])->name('product.tambah');
+            Route::post('/product/prosesTambah',[ProductController::class, 'prosesTambah'])->name('product.prosesTambah');
+        });
         Route::get('/product',[ProductController::class, 'index'])->name('product.index');
-        Route::get('/product/tambah',[ProductController::class, 'tambah'])->name('product.tambah');
-        Route::post('/product/prosesTambah',[ProductController::class, 'prosesTambah'])->name('product.prosesTambah');
         Route::get('/product/ubah/{id}',[ProductController::class, 'ubah'])->name('product.ubah');
         Route::post('/product/prosesUbah',[ProductController::class, 'prosesUbah'])->name('product.prosesUbah');
         Route::get('/product/hapus/{id}',[ProductController::class, 'hapus'])->name('product.hapus');
-
     });
 
     Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');

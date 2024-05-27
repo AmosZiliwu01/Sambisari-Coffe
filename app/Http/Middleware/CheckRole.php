@@ -15,11 +15,20 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        if (!Auth::check() || Auth::user()->role !== $role) {
-            return redirect('/'); // Redirect to homepage if user is not authenticated or doesn't have the required role
+        if (Auth::check()) {
+            // Get the user's role
+            $userRole = Auth::user()->role;
+
+            // Check if the user's role matches any of the allowed roles
+            if (in_array($userRole, $roles)) {
+                // User is authorized, allow access to the route
+                return $next($request);
+            }
         }
-        return $next($request);
+
+        // User is not authorized, redirect back or to a specific route
+        return redirect()->route('home.index')->with('pesan', ['error', 'Unauthorized']);
     }
 }

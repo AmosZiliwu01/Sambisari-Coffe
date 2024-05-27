@@ -33,7 +33,18 @@ class UserController extends Controller
 
             try {
                 $user->save();
-                return redirect()->route('dashboard.index')->with('pesan', ['success', 'Profile updated successfully']);
+
+                // Redirect based on user's role
+                if ($user->role === 'admin') {
+                    return redirect()->route('dashboard.index')->with('pesan', ['success', 'Profile updated successfully']);
+                } elseif ($user->role === 'kasir') {
+                    return redirect()->route('kategori.index')->with('pesan', ['success', 'Profile updated successfully']);
+                } elseif ($user->role === 'pelanggan') {
+                    return redirect()->route('pesanan.index')->with('pesan', ['success', 'Profile updated successfully']);
+                } else {
+                    // Redirect to a default route if the role is not recognized
+                    return redirect()->route('dashboard.index')->with('pesan', ['warning', 'Unknown role']);
+                }
             } catch (\Exception $e) {
                 return redirect()->route('dashboard.index')->with('pesan', ['danger', 'Failed to update profile']);
             }

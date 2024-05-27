@@ -5,10 +5,11 @@
             <div class="col-lg-6">
                 <h1 class="h3 mb-2 text-gray-800">List Kategori</h1>
             </div>
-
+            @can('kasir')
             <div class="col-lg-6 text-right">
                 <a href="{{ route('kategori.tambah') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"> Tambah</i></a>
             </div>
+            @endcan
         </div>
 
         @if(session()->has('pesan'))
@@ -25,7 +26,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Kategori</th>
+                                @can('kasir')
                                 <th>Aksi</th>
+                                @endcan
                             </tr>
                         </thead>
                     <tbody>
@@ -36,10 +39,12 @@
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$row->nama_kategori}}</td>
+                            @can('kasir')
                             <td>
                                 <a href="{{route('kategori.ubah',$row->id_kategori)}}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i> Ubah</a>
                                 <a href="{{route('kategori.hapus',$row->id_kategori)}}"onclick="return confirm('Anda Yakin?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                             </td>
+                            @endcan
                         </tr>
                     @endforeach
                     </tbody>
