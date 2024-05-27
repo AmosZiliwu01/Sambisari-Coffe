@@ -11,22 +11,30 @@ class TransaksiController extends Controller
     public function index()
     {
         $rows = Transaction::query()->get();
-        return view('backend.content.transaction.list', [
-            'rows' => $rows
-        ]);
+        // Calculate total semua transaksi
+        $totalSemuaTransaksi = 0;
+        foreach ($rows as $row) {
+            $totalSemuaTransaksi += $row->total;
+        }
+
+        // Pass $rows and $totalSemuaTransaksi to the view
+        return view('backend.content.transaction.list', compact('rows', 'totalSemuaTransaksi'));
+
     }
 
-    public function printPDF($id)
+    public function generatePDF()
     {
-        // Mengambil transaksi berdasarkan ID yang diberikan
-        $row = Transaction::query()->with('ItemTransaction.Product')->find($id);
-        if ($row === null) {
-            abort(404);
-        }
-        //    use Barryvdh\DomPDF\Facade\Pdf;
-        $pdf = Pdf::loadView('backend.content.transaction.print-pdf', ['row' => $row])
-            ->setPaper('A4');
-        return $pdf->stream('Invoice ' . $row->code . '.pdf');
+        $rows = Transaction::all(); // Or fetch transactions as needed
+
+        $pdf = PDF::loadView('backend.content.transaction.print-pdf', compact('rows'));
+
+        return $pdf->download('transactions.pdf');
+    }
+    public function delete($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->delete();
+        return redirect()->back()->with('success', 'Transaction deleted successfully');
     }
 
 }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Staff User',
             'email' => 'staff@example.com',
             'password' => Hash::make('staff@example.com'),
+            'role' => 'kasir'
         ]);
 
         // Menambahkan pengguna untuk admin
@@ -27,6 +28,15 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin@example.com'),
+            'role' => 'admin'
+        ]);
+
+        // Menambahkan pengguna untuk admin
+        DB::table('users')->insert([
+            'name' => 'User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('admin@example.com'),
+            'role' => 'pelanggan'
         ]);
 
         // Menambahkan data staf secara langsung ke dalam tabel 'staffs'

@@ -49,7 +49,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Isi Product</label>
+                        <label class="form-label">Deskripsi Product</label>
                         <textarea class="form-control" name="isi_product" required>{{ $product->isi_product }}</textarea>
                     </div>
                     <div class="mb-3">

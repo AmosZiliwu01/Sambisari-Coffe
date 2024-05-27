@@ -1,68 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Invoice {{$row->code}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction List</title>
+    <style>
+        /* Add your custom styles for the PDF here */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        font-size: 14pt;
-    }
-
-    .header {
-        text-align: center;
-    }
-
-    .right {
-        text-align: right;
-    }
-
-    table.data {
-        border: 1px solid;
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    table.data > tbody > tr > td {
-        border: 1px solid;
-        padding: 5px;
-    }
-
-    table.data > thead > tr > th {
-        border: 1px solid;
-        background-color: #eaeaea;
-        padding: 5px;
-    }
-
-    table.data > tbody > tr > th {
-        border: 1px solid;
-        background-color: #eaeaea;
-        padding: 5px;
-        text-align: left;
-    }
-
-</style>
 <body>
-<div class="header">
-    <h1>Invoice Belanja</h1>
-    <h2>{{$row->code}}</h2>
-</div>
-<hr>
-<table class="data">
+<h1>Transaction List</h1>
+<table>
+    <thead>
     <tr>
-        <th>Nama Barang</th>
-        <th>@</th>
-        <th>Qty</th>
+        <th>No</th>
+        <th>Kode</th>
+        <th>Nama Pelanggan</th>
+        <th>Tanggal</th>
         <th>Total</th>
     </tr>
-    @foreach($row->ItemTransaction as $item)
+    </thead>
+    <tbody>
+    @php
+        $totalSemuaTransaksi = 0;
+    @endphp
+    @foreach($rows as $index => $row)
         <tr>
-            <td>{{$item->Product->name}}</td>
-            <td class="right">{{number_format($item->price)}}</td>
-            <td class="right">{{$item->qty}}</td>
-            <td class="right">{{number_format($item->price * $item->qty)}}</td>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $row->code }}</td>
+            <td>{{ $row->customer_name }}</td>
+            <td>{{ $row->date }}</td>
+            <td>Rp {{ $row->total }}</td>
         </tr>
+        @php
+            $totalSemuaTransaksi += $row->total;
+        @endphp
     @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <th colspan="4">Total</th>
+        <th>Rp {{ $totalSemuaTransaksi }}</th>
+    </tr>
+    </tfoot>
 </table>
 </body>
 </html>

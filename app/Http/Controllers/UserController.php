@@ -10,10 +10,39 @@ class UserController extends Controller
 {
     public function index(){
         $user = User::all();
-
         return view('backend.content.user.list', compact('user'));
 
     }
+    public function updateProfile(){
+        return view('backend.content.profile');
+    }
+
+    public function prosesUpdateProfile(Request $request)
+    {
+        $id = $request->user()->id;
+        $user = User::findOrFail($id);
+
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            ]);
+
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+
+            try {
+                $user->save();
+                return redirect()->route('dashboard.index')->with('pesan', ['success', 'Profile updated successfully']);
+            } catch (\Exception $e) {
+                return redirect()->route('dashboard.index')->with('pesan', ['danger', 'Failed to update profile']);
+            }
+        }
+
+        return view('backend.content.profile', compact('user'));
+    }
+
+
 
     public function hapus($id){
         $user = User::findOrFail($id);

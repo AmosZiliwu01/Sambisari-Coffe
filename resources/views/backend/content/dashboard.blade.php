@@ -89,7 +89,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="dataTable" width="100%" collspacing="0">
                                 <thead>
                                 <tr>
                                     <th>Gambar Product</th>

@@ -51,7 +51,7 @@
                         <input type="number" class="form-control" id="price" name="price" required>
                     </div>
                     <div class="form-group">
-                        <label for="isi_product">Isi Product:</label>
+                        <label for="isi_product">Deskripsi Product:</label>
                         <textarea class="form-control" id="isi_product" name="isi_product" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah</button>

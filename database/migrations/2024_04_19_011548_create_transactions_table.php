@@ -14,6 +14,7 @@ return new class extends Migration {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('code');
+            $table->string('customer_name')->nullable();
             $table->date('date');
             $table->decimal('subtotal', 20, 0);
             $table->decimal('discount', 20, 0);

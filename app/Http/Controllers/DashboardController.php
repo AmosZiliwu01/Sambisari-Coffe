@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $totalProduct = Product::count();
         $totalKategori = Kategori::count();
         $totalUser = User::count();
-        $latestProduct = Product::with('Kategori')->latest()->take(5)->get();
+        $latestProduct = Product::with('Kategori')->latest()->get();
 
         // Returning view with data
         return view('backend.content.dashboard', compact('totalProduct', 'totalKategori', 'totalUser', 'latestProduct'));

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ItemTransaction;
+use App\Models\Pesanan;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Database\QueryException;
@@ -14,9 +15,22 @@ class KasirController extends Controller
 {
     public function index()
     {
-        return view('backend.content.kasir.index');
+        $pesanans = Pesanan::orderBy('created_at', 'desc')->get();
+        $products = Product::with('kategori')->get();
+        return view('backend.content.kasir.index', [
+            'products' => $products,
+            'pesanans' => $pesanans,
+        ]);
     }
 
+    public function deleteAll()
+    {
+        // Delete all transactions
+        Transaction::truncate();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'All transactions have been deleted.');
+    }
     public function searchProduct(Request $request)
     {
         $product = Product::query()->where('barcode', $request->barcode)->first();
@@ -40,8 +54,10 @@ class KasirController extends Controller
             $transaction->subtotal = 0;
             $transaction->discount = 0;
             $transaction->total = 0;
+            $transaction->customer_name = $request->customer_name; // Add customer name directly
             $transaction->created_by = Auth::id();
             $transaction->save();
+
             #2. Simpan data item transaction
             $subtotal = 0;
             $itemCount = count($request->price);
@@ -61,6 +77,7 @@ class KasirController extends Controller
             $transaction->discount = $request->discount;
             $transaction->total = $subtotal - $discount;
             $transaction->save();
+
             #commit
             DB::commit();
             return redirect()->back()->with('berhasil', 'Transaksi Berhasil');
@@ -70,4 +87,16 @@ class KasirController extends Controller
             return redirect()->back()->with('gagal', 'Transaksi Gagal');
         }
     }
+
+
+    public function updateStatus($id, $status)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->status = $status;
+        $transaction->save();
+
+        return redirect()->back()->with('status', 'Status updated successfully');
+    }
+
+
 }

@@ -8,7 +8,6 @@
 
             <div class="col-lg-6 text-right">
                 <a href="{{ route('kategori.tambah') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"> Tambah</i></a>
-                <a href="{{ route('kategori.exportPdf') }}" class="btn btn-sm btn-primary"><i class="fa fa-file-pdf"> Export PDF</i></a>
             </div>
         </div>
 
@@ -21,7 +20,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>

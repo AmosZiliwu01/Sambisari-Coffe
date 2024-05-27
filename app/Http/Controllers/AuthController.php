@@ -23,11 +23,19 @@ class AuthController extends Controller
         ]);
 
         if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('dashboard.index');
+            $user = Auth::guard('user')->user();
+            if ($user->role == 'pelanggan') {
+                return redirect()->route('pesanan.index');
+            } elseif ($user->role == 'kasir') {
+                return redirect()->route('kategori.index');
+            } else {
+                return redirect()->route('dashboard.index');
+            }
         } else {
             return redirect()->route('auth.index')->with('pesan', 'Kombinasi Email dan Password salah');
         }
     }
+
     public function register()
     {
         return view('backend.content.register.index');
@@ -72,10 +80,9 @@ class AuthController extends Controller
         return redirect('/login')->with('sukses', 'Aktivasi Berhasil, anda sudah bisa login');
     }
 
-
     public function logout()
     {
         Auth::guard('user')->logout();
-        return redirect()->route('auth.index');
+        return redirect()->route('home.index');
     }
 }

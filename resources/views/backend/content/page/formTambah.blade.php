@@ -30,4 +30,24 @@
         </div>
     </div>
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                simpleUpload: {
+
+                    // Enable the `withCredentials` flag for CORS requests.
+                    withCredentials: true,
+
+                    // Headers sent along with the XMLHttpRequest to the upload server.
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
 @endsection

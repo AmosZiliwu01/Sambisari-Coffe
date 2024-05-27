@@ -11,10 +11,11 @@ class HomeController extends Controller
     public function index()
     {
         #halaman awal
+        $products = Product::all();
         $menu = $this->getMenu();
-        $product = Product::with('kategori')->latest()->get()->take(6);
+        $product = Product::with('kategori')->latest()->get()->take(8);
         $mostViews = Product::with('kategori')->orderByDesc('total_views')->get()->take(3);
-        return view('frontend.content.home', compact('menu','product','mostViews'));
+        return view('frontend.content.home', compact('menu','product','mostViews','products'));
     }
 
     public function detailProduct($id)
@@ -42,7 +43,7 @@ class HomeController extends Controller
         #halaman menampilkan seluruh data product
         $menu = $this->getMenu();
         $product = Product::with('kategori')->latest()->get();
-        return view('frontend.content.semuaProduct', compact('menu','product'));
+        return view('frontend.content.SemuaProduct', compact('menu','product'));
 
     }
 

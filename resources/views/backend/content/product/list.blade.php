@@ -27,7 +27,7 @@
                             <th>Gambar Product</th>
                             <th>Barcode</th>
                             <th>Name</th>
-                            <th>Isi Product</th>
+                            <th>Deskripsi Product</th>
                             <th>Price</th>
                             <th>Kategori</th>
                             <th>Aksi</th>

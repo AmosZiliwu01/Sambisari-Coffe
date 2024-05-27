@@ -74,10 +74,4 @@ class KategoriController extends Controller
         }
     }
 
-    public function exportPdf()
-    {
-        $kategori = Kategori::all();
-        $pdf = Pdf::loadView('backend.content.kategori.export', compact('kategori'));
-        return $pdf->download('Data Kategori.pdf');
-    }
 }
