@@ -66,29 +66,40 @@ class ProductController extends Controller
             'price' => 'required',
             'isi_product' => 'required',
             'id_kategori' => 'required',
+            'gambar_product' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validasi untuk tipe gambar dan ukuran maksimal
         ]);
 
+        // Temukan produk yang akan diubah berdasarkan ID
         $product = Product::findOrFail($request->id);
+        // Set nilai atribut baru berdasarkan data yang diterima dari formulir
         $product->barcode = $request->barcode;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->isi_product = $request->isi_product;
         $product->id_kategori = $request->id_kategori;
 
+        // Cek apakah ada file gambar yang diunggah oleh pengguna
         if($request->hasFile('gambar_product')){
-            $request->file('gambar_product')->store('public');
-            $gambar_product = $request->file('gambar_product')->hashName();
-            $product->gambar_product = $gambar_product;
+            // Simpan gambar baru
+            $gambar_product = $request->file('gambar_product')->store('public');
+            // Ambil nama file yang disimpan
+            $gambar_product_name = basename($gambar_product);
+            // Update kolom gambar_product dalam database
+            $product->gambar_product = $gambar_product_name;
         }
 
         try {
+            // Simpan perubahan pada database
             $product->save();
+            // Redirect ke halaman produk dengan pesan sukses
             return redirect(route('product.index'))->with('pesan', ['success','Berhasil ubah product']);
         }catch (\Exception $e){
+            // Redirect ke halaman produk dengan pesan error jika terjadi kesalahan
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal ubah product']);
         }
-
     }
+
+
 
     public function hapus($id)
     {

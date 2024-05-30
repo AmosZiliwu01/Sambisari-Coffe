@@ -20,8 +20,10 @@
                                     <th>Nama Pelanggan</th>
                                     <th>Tanggal</th>
                                     <th>Total</th>
+                                    @can('kasir1')
                                     <th>Status</th> <!-- Tambahkan kolom Status -->
                                     <th>Action</th>
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -33,6 +35,7 @@
                                         <td>{{$row->customer_name}}</td>
                                         <td>{{$row->date}}</td>
                                         <td class="text-right">Rp {{$row->total}}</td>
+                                        @can('kasir1')
                                         <td>{{$row->status}}</td> <!-- Tampilkan Status -->
                                         <td>
                                         @if($row->status == 'Proses')
@@ -48,7 +51,7 @@
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
-
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>

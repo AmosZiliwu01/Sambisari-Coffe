@@ -15,17 +15,18 @@
 
         <div class="card shadow mb-4">
             <div class="card-body">
-                <form action="{{ route('product.prosesUbah') }}"  method="post">
+                <form action="{{ route('product.prosesUbah') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <!-- Field untuk gambar produk -->
                     <div class="mb-3">
                         <label class="form-label">Foto Product</label>
-                        <input type="file" name="gambar_product" class="form-control @error('gambar_product') is-invalid @enderror"
-                               accept="image/*" onchange="tampilkanPreview(this, 'tampilFoto')">
-                        @error('name')
+                        <input type="file" name="gambar_product" class="form-control @error('gambar_product') is-invalid @enderror" accept="image/*" onchange="tampilkanPreview(this, 'tampilFoto')">
+                        @error('gambar_product')
                         <span style="color: red; font-weight: 600; font-size: 9pt;">{{ $message }}</span>
                         @enderror
                         <p></p>
-                        <img id="tampilFoto" onerror="this.onerror=null;this.src='https://t4.ftcdn,net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly70B0510O5KABlN930GwaMQz.jpg';" src="{{ route('storage',$product->gambar_product) }}" alt="" width="15%">
+                        <!-- Menampilkan preview gambar yang akan diubah -->
+                        <img id="tampilFoto" src="{{ route('storage',$product->gambar_product) }}" alt="" width="15%">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Barcode</label>
