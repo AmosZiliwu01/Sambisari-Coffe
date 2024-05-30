@@ -15,8 +15,8 @@
                     <div class="form-title"><span>Register</span></div>
                     <div class="title-2"><span>SAMBISARI COFFE</span></div>
                     @if(session()->has('pesan'))
-                        <div class="alert alert-danger">
-                            {{session()->get('pesan')}}
+                        <div class="alert alert-{{session()->get('pesan')[0]}}">
+                            {{session()->get('pesan')[1]}}
                         </div>
                     @endif
                     <div class="input-container">

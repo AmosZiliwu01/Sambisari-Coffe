@@ -76,7 +76,6 @@
             @endif
         </li>
     </ul>
-
     <div class="icons">
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-shopping-cart" id="cart-btn" onclick="redirectCart()"></div>

@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $row->name}}</td>
-                                <td>{{ $row->email }}</td>
+                                <td><a href="mailto:{{ $row->email }}" class="text-primary">{{ $row->email }}</a></td>
                                 <td>
                                     <a href="{{ route('user.hapus',$row->id) }}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary btn-danger"><i class="fa fa-trash"> </i> Hapus</a>
                                 </td>

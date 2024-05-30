@@ -28,6 +28,11 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register.index');
     Route::post('/register', [AuthController::class, 'registerProceed'])->name('register.verify');
     Route::get('/register/activation/{token}', [AuthController::class, 'registerVerify']);
+    Route::get('/forgot-password', [AuthController::class, 'forgotpassword'])->name('password.request');
+    Route::post('/forgot-password', [AuthController::class, 'resetPasswordEmail'])->name('password.email');
+    Route::get('/password/confirmation/{token}', [AuthController::class, 'showResetPasswordConfirmation'])->name('password.confirmation');
+    Route::post('/password/update/{token}', [AuthController::class, 'updatePassword'])->name('password.update');
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
 });
 
 Route::middleware(['auth:user'])->group(function () {
@@ -113,6 +118,8 @@ Route::middleware(['auth:user'])->group(function () {
     });
 
     Route::get('/Logout',[AuthController::class, 'Logout'])->name('auth.logout');
+
+
 });
 
 Route::get('files/{filename}', function ($filename) {

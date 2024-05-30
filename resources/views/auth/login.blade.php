@@ -15,8 +15,8 @@
                     <div class="form-title"><span>sign in to</span></div>
                     <div class="title-2"><span>SAMBISARI COFFE</span></div>
                     @if(session()->has('pesan'))
-                        <div class="alert alert-danger">
-                            {{session()->get('pesan')}}
+                        <div class="alert alert-{{session()->get('pesan')[0]}}">
+                            {{session()->get('pesan')[1]}}
                         </div>
                     @endif
                     <div class="input-container">
@@ -39,8 +39,8 @@
                     </button>
 
                     <div class="text-right">
-                        <a href="{{ route('register.index') }}" class="btn-user btn-block">
-                            Create an account
+                        <a href="{{ route('password.request') }}" class="btn-user btn-block">
+                            Forgot Password
                         </a>
                     </div>
 
@@ -52,6 +52,11 @@
                             <i class="h1 fab fa-google fa-fw"></i>
                         </a>
                     </div>
+
+                    <p class="signup-link">
+                        Don't have an account?
+                        <a href="{{ route('register.index') }}" class="up">Sign Up!</a>
+                    </p>
                 </form>
             </div>
 
