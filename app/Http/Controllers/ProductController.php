@@ -10,6 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
+
         $products = Product::with('kategori')->get();
         return view('backend.content.product.list', ['products' => $products]);
 
@@ -112,5 +113,30 @@ class ProductController extends Controller
         }catch (\Exception $e){
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal hapus product']);
         }
+    }
+    public function destroyPermanently($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        $product->forceDelete(); // Menghapus produk secara permanen
+        return redirect()->back()->with('pesan', ['success', 'Produk berhasil dihapus permanen']);
+    }
+    public function trashedProducts()
+    {
+        $trashedProducts = Product::onlyTrashed()->get();
+        return view('backend.content.product.trashed', compact('trashedProducts'));
+    }
+    public function deletePermanent($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->forceDelete();
+
+        return redirect()->route('produk.terhapus')->with('pesan', ['success', 'Produk berhasil dihapus secara permanen']);
+    }
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+
+        return redirect()->route('produk.terhapus')->with('pesan', ['success', 'Produk berhasil dipulihkan']);
     }
 }

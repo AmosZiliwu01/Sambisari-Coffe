@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use HasFactory, SoftDeletes;
     protected $table = "products";
 
     protected $fillable = [
@@ -20,6 +21,7 @@ class Product extends Model
         'isi_product'
     ];
 
+    protected $dates = ['deleted_at'];
     public function kategori(){
         return $this->belongsTo(Kategori::class, 'id_kategori');
     }

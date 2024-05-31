@@ -24,6 +24,9 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" collspacing="0">
                         <thead>
+                        @can('kasir')
+                        <a href="{{route('produk.terhapus')}}" class="btn btn-sm btn-secondary mb-2">Lihat Produk yang Sudah Dihapus</a>
+                        @endcan
                         <tr>
                             <th>No</th>
                             <th>Gambar Product</th>

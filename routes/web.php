@@ -102,6 +102,10 @@ Route::middleware(['auth:user'])->group(function () {
         Route::middleware(['role:admin,kasir'])->group(function () {
             Route::get('/kategori/tambah',[KategoriController::class, 'tambah'])->name('kategori.tambah');
             Route::post('/kategori/prosesTambah',[KategoriController::class, 'prosesTambah'])->name('kategori.prosesTambah');
+            Route::delete('/products/{id}/permanently-delete', [ProductController::class, 'destroyPermanently'])->name('products.permanently-delete');
+            Route::get('/produk/terhapus', [ProductController::class, 'trashedProducts'])->name('produk.terhapus');
+            Route::delete('/produk/hapus-permanent/{id}', [ProductController::class, 'deletePermanent'])->name('product.delete-permanent');
+            Route::put('/produk/restore/{id}', [ProductController::class, 'restore'])->name('product.restore');
         });
         Route::get('/kategori/ubah/{id}',[KategoriController::class, 'ubah'])->name('kategori.ubah');
         Route::post('/kategori/prosesUbah',[KategoriController::class, 'prosesUbah'])->name('kategori.prosesUbah');
