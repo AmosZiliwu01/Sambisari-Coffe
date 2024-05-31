@@ -41,6 +41,9 @@
                     <div class="form-group">
                         <label for="barcode">Barcode:</label>
                         <input type="text" class="form-control" id="barcode" name="barcode" required>
+                        @error('barcode')
+                        <span style="color: red; font-weight: 600; font-size: 9pt">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="name">Nama:</label>

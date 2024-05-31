@@ -10,6 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
+
         $products = Product::with('kategori')->get();
         return view('backend.content.product.list', ['products' => $products]);
 
@@ -23,13 +24,24 @@ class ProductController extends Controller
 
     public function prosesTambah(Request $request)
     {
+        $messages = [
+            'barcode.required' => 'Barcode tidak boleh kosong.',
+            'barcode.unique' => 'Barcode sudah pernah digunakan, tidak boleh sama.',
+            'name.required' => 'Nama tidak boleh kosong.',
+            'price.required' => 'Harga tidak boleh kosong.',
+            'isi_product.required' => 'Deskripsi produk tidak boleh kosong.',
+            'gambar_product.required' => 'Gambar produk tidak boleh kosong.',
+            'gambar_product.image' => 'File harus berupa gambar.',
+            'gambar_product.max' => 'Ukuran gambar maksimal 2MB.',
+        ];
+
         $this->validate($request, [
-            'barcode' => 'required',
+            'barcode' => 'required|unique:products,barcode',
             'name' => 'required',
             'price' => 'required',
             'isi_product' => 'required',
-            'gambar_product' => 'required', // tambahkan validasi untuk tipe gambar dan ukuran maksimal
-        ]);
+            'gambar_product' => 'required|image|max:2048', // added validation for image type and size
+        ], $messages);
 
         $request->file('gambar_product')->store('public');
         $gambar_product = $request->file('gambar_product')->hashName();
@@ -50,7 +62,6 @@ class ProductController extends Controller
         }
     }
 
-
     public function ubah($id)
     {
         $kategori = Kategori::all();
@@ -61,43 +72,34 @@ class ProductController extends Controller
     public function prosesUbah(Request $request)
     {
         $this->validate($request, [
-            'barcode' => 'required',
+            'barcode' => 'required|unique:products,barcode,' . $request->id,
             'name' => 'required',
             'price' => 'required',
             'isi_product' => 'required',
             'id_kategori' => 'required',
-            'gambar_product' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validasi untuk tipe gambar dan ukuran maksimal
         ]);
 
-        // Temukan produk yang akan diubah berdasarkan ID
         $product = Product::findOrFail($request->id);
-        // Set nilai atribut baru berdasarkan data yang diterima dari formulir
         $product->barcode = $request->barcode;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->isi_product = $request->isi_product;
         $product->id_kategori = $request->id_kategori;
 
-        // Cek apakah ada file gambar yang diunggah oleh pengguna
         if($request->hasFile('gambar_product')){
-            // Simpan gambar baru
-            $gambar_product = $request->file('gambar_product')->store('public');
-            // Ambil nama file yang disimpan
-            $gambar_product_name = basename($gambar_product);
-            // Update kolom gambar_product dalam database
-            $product->gambar_product = $gambar_product_name;
+            $request->file('gambar_product')->store('public');
+            $gambar_product = $request->file('gambar_product')->hashName();
+            $product->gambar_product = $gambar_product;
         }
 
         try {
-            // Simpan perubahan pada database
             $product->save();
-            // Redirect ke halaman produk dengan pesan sukses
             return redirect(route('product.index'))->with('pesan', ['success','Berhasil ubah product']);
-        }catch (\Exception $e){
-            // Redirect ke halaman produk dengan pesan error jika terjadi kesalahan
+        } catch (\Exception $e) {
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal ubah product']);
         }
     }
+
 
 
 
@@ -111,5 +113,30 @@ class ProductController extends Controller
         }catch (\Exception $e){
             return redirect(route('product.index'))->with('pesan', ['danger','Gagal hapus product']);
         }
+    }
+    public function destroyPermanently($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        $product->forceDelete(); // Menghapus produk secara permanen
+        return redirect()->back()->with('pesan', ['success', 'Produk berhasil dihapus permanen']);
+    }
+    public function trashedProducts()
+    {
+        $trashedProducts = Product::onlyTrashed()->get();
+        return view('backend.content.product.trashed', compact('trashedProducts'));
+    }
+    public function deletePermanent($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->forceDelete();
+
+        return redirect()->route('produk.terhapus')->with('pesan', ['success', 'Produk berhasil dihapus secara permanen']);
+    }
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+
+        return redirect()->route('produk.terhapus')->with('pesan', ['success', 'Produk berhasil dipulihkan']);
     }
 }
