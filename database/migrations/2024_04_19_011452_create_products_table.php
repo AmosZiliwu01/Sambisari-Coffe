@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('barcode');
+            $table->string('barcode')->unique();
             $table->longText('isi_product');
             $table->string('name');
             $table->string('gambar_product');
