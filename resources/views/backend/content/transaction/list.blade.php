@@ -11,8 +11,9 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" collspacing="0">
+                                @can('kasir1')
                                 <a href="{{ route('transaksi.deleteAll') }}" class="btn btn-sm btn-danger mb-2" onclick="return confirm('Are you sure you want to delete all transactions?')">Delete All Transactions</a>
-
+                                @endcan
                                 <thead>
                                 <tr>
                                     <th>No</th>
