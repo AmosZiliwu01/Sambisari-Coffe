@@ -16,9 +16,9 @@ class PesananController extends Controller
         $id = Auth::guard('user')->user()->id;
         $user = User::findOrFail($id);
         if($user->role == 'pelanggan'){
-            $pesanans = Pesanan::where('iduser',$id)->get();
+            $pesanans = Pesanan::where('iduser',$id)->orderByDesc('created_at')->get();
         }else{
-            $pesanans = Pesanan::all();
+            $pesanans = Pesanan::orderByDesc('created_at')->get();
         }
         $products = Product::all();
 
@@ -121,7 +121,10 @@ class PesananController extends Controller
         // Delete all pesanan
         Pesanan::truncate();
 
+        // Delete all item pesanan
+        ItemPesanan::truncate();
+
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'All pesanan have been deleted.');
+        return redirect()->back()->with('success', 'All pesanan and their details have been deleted.');
     }
 }

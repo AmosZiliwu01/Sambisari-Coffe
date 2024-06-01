@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemPesanan extends Model
 {
-    use HasFactory;
 
     protected $table = 'item_pesanan';
 
@@ -21,7 +20,8 @@ class ItemPesanan extends Model
     {
         return $this->belongsTo(Product::class,'idproduct');
     }
-
-
-
+    public function pesanan()
+    {
+        return $this->belongsTo(Pesanan::class, 'idpesanan');
+    }
 }

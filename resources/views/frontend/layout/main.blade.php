@@ -122,44 +122,44 @@
     <div class="footer-container">
         <div class="logo">
             <img src="{{asset('assets-fe/images/LogoSambisari.png')}}"><br/>
-            <i class="fas fa-envelope"></i>
-            <p>abfiguerrez18@gmail.com</p><br />
-            <i class="fas fa-phone"></i>
-            <p>+63 917-134-1422</p><br />
-            <i class="fab fa-facebook-messenger"></i>
-            <p>@kapetanncoffee</p><br />
         </div>
         <div class="support">
-            <h2>Support</h2>
+            <h2>WhatsApp</h2>
             <br />
-            <a href="#">Contact Us</a>
-            <a href="#">Customer Service</a>
-            <a href="#">Chatbot Inquiry</a>
-            <a href="#">Submit a Ticket</a>
+            <a href="https://wa.me/087742262378" target="_blank">
+                <p>+62 087742262378</p>
+            </a>
+            <h2>Instagram</h2>
+            <a href="https://www.instagram.com/sambisaricoffee?igsh=bnJ3emQzbjl2b3p5" target="_blank">sambisaricoffe</a>
         </div>
         <div class="company">
-            <h2>Company</h2>
+            <h2>Maps</h2>
             <br />
-            <a href="#">About Us</a>
-            <a href="#">Affiliates</a>
-            <a href="#">Resources</a>
-            <a href="#">Partnership</a>
-            <a href="#">Suppliers</a>
+            <a href="https://maps.app.goo.gl/8hcERPTYstBUoUhz9" target="_blank">https://maps.app.goo.gl/8hcERPTYstBUoUhz9</a>
+            <h2>TikTok</h2>
+            <a href="https://www.tiktok.com/@sambisari.coffee?is_from_webapp=1&sender_device=pc" target="_blank">sambisari.coffee</a>
         </div>
-        <div class="newsletters">
-            <h2>Newsletters</h2>
+        <div class="company">
+            <h2>Gofood</h2>
             <br />
-            <p>Subscribe to our newsletter for news and updates!</p>
-            <div class="input-wrapper">
-                <input type="email" class="newsletter" placeholder="Your email address">
-                <i id="paper-plane-icon" class="fas fa-paper-plane"></i>
-            </div>
+            <a href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
+               target="_blank">Sambisari Coffe And Space</a>
         </div>
-        <div class="credit">
-            <hr /><br/>
-            <h2>KapeTann Brewed Coffee © 2023 | All Rights Reserved.</h2>
-            <h2>Designed by <span>Algo Filipino</span> | Teravision</h2>
-        </div>
+
+        {{--        <div class="newsletters">--}}
+{{--            <h2>Newsletters</h2>--}}
+{{--            <br />--}}
+{{--            <p>Subscribe to our newsletter for news and updates!</p>--}}
+{{--            <div class="input-wrapper">--}}
+{{--                <input type="email" class="newsletter" placeholder="Your email address">--}}
+{{--                <i id="paper-plane-icon" class="fas fa-paper-plane"></i>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="credit">--}}
+{{--            <hr /><br/>--}}
+{{--            <h2>KapeTann Brewed Coffee © 2023 | All Rights Reserved.</h2>--}}
+{{--            <h2>Designed by <span>Algo Filipino</span> | Teravision</h2>--}}
+{{--        </div>--}}
     </div>
 </section>
 

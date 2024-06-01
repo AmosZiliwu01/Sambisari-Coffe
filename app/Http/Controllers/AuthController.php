@@ -36,7 +36,7 @@ class AuthController extends Controller
             }
 
             if ($user->role == 'pelanggan') {
-                return redirect()->route('product.index');
+                return redirect()->route('pesanan.index');
             } elseif ($user->role == 'kasir') {
                 return redirect()->route('kategori.index');
             } else {
