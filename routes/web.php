@@ -64,9 +64,9 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
         Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
    });
+    Route::middleware(['role:kasir,pelanggan'])->group(function () {
         Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
         Route::get('/pesanan/detail/{id}', [PesananController::class, 'detail'])->name('pesanan.detail');
-
         Route::get('/pesanan/tambah', [PesananController::class, 'tambah'])->name('pesanan.tambah');
         Route::post('/pesanan/proses-tambah', [PesananController::class, 'prosesTambah'])->name('pesanan.prosesTambah');
         Route::get('/pesanan/{id}/ubah', [PesananController::class, 'ubah'])->name('pesanan.ubah');
@@ -74,8 +74,9 @@ Route::middleware(['auth:user'])->group(function () {
         Route::get('/pesanan/hapus/{id}', [PesananController::class, 'hapus'])->name('pesanan.hapus');
         Route::get('/pesanan/{id}/status/{status}', [PesananController::class, 'updateStatus'])->name('pesanan.updateStatus');
         Route::get('/pesanan/delete-all', [PesananController::class, 'deleteAll'])->name('pesanan.deleteAll');
+    });
 
-        Route::get('/dashboard/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
+    Route::get('/dashboard/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
         Route::get('/profile', [UserController::class, 'profile'])->name('profile.index');
         Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
         Route::get('/profile/updateProfile',[UserController::class, 'updateProfile'])->name('user.updateProfile');

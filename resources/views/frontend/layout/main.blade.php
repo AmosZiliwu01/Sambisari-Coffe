@@ -62,20 +62,22 @@
         </div>
     </nav>
     <ul class="navbar-nav mr-auto ms-auto">
-        <li class="h3 nav-item">
+        <li class="h3 nav-item" style="display: flex; align-items: center;">
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
                     <a href="{{ route('dashboard.index') }}" class="nav-link text-decoration-none text-white">Kembali</a>
-                @elseif (auth()->user()->role == 'kasir')
-                    <a href="{{ route('kasir.index') }}" class="nav-link text-decoration-none text-white">Kembali</a>
-                @else
-                    <a href="{{ route('auth.index') }}" class="nav-link text-decoration-none text-white">Login</a>
+                @elseif (auth()->user()->role == 'kasir' || auth()->user()->role == 'pelanggan')
+                    <a href="{{ route('pesanan.index') }}" class="nav-link text-decoration-none text-white">Kembali</a>
                 @endif
+                <a href="{{ route('auth.logout') }}" class="nav-link text-decoration-none text-white ml-2">Logout</a>
             @else
                 <a href="{{ route('auth.index') }}" class="nav-link text-decoration-none text-white">Login</a>
+                <span class="text-white mx-1">|</span>
+                <a href="{{ route('auth.logout') }}" class="nav-link text-decoration-none text-white">Logout</a>
             @endif
         </li>
     </ul>
+
     <div class="icons">
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-shopping-cart" id="cart-btn" onclick="redirectCart()"></div>
@@ -98,7 +100,7 @@
 {{--            <div class="total-price">Rp0</div>--}}
 {{--        </div>--}}
         <!-- BUY BUTTON -->
-        <a class="btn btn-buy" href="{{route('pesanan.index')}}">Klik</a>
+        <a class="btn btn-buy" href="{{route('pesanan.index')}}">Masuk Kedahsboard</a>
     </div>
 
 
@@ -107,9 +109,9 @@
 <!-- HERO SECTION -->
 <section class="home" id="home">
     <div class="content">
-        <h3>Welcome to Sambisari Coffee Shop!</h3>
-        <p><strong>We are open 4:00 PM to 9:00 PM.</strong></p>
-        <a href="#menu" class="btn btn-dark text-decoration-none">Order Now!</a>
+        <h3>Selamat datang di Sambisari Coffee Shop!</h3>
+        <p><strong>Selamat datang untuk menikmati kenyamanan kami.</strong></p>
+        <a href="#menu" class="btn btn-dark text-decoration-none">Pesan Sekarang!</a>
     </div>
 </section>
 
@@ -118,7 +120,7 @@
 @yield('content')
 
 <!-- FOOTER SECTION -->
-<section class="footer">
+<section class="footer" id="contact">
     <div class="footer-container">
         <div class="logo">
             <img src="{{asset('assets-fe/images/LogoSambisari.png')}}"><br/>
@@ -185,10 +187,10 @@
                                    placeholder="Tap 'Enter' to send a message">
                             <p></p>
                         </div>
-                        <div class="chat-bar-icons">
-                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-paper-plane"
-                               onclick="sendButton()"></i>
-                        </div>
+{{--                        <div class="chat-bar-icons">--}}
+{{--                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-paper-plane"--}}
+{{--                               onclick="sendButton()"></i>--}}
+{{--                        </div>--}}
                     </div>
                     <div id="chat-bar-bottom">
                         <p></p>
