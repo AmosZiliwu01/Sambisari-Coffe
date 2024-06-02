@@ -42,7 +42,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     @foreach($dm['itemMenu'] as $idm)
                                         <li>
-                                            <a href="{{$idm['sub_menu_url']}}" class="dropdown-item" target="{{$idm['sub_menu_target']}}">
+                                            <a href="{{$idm['sub_menu_url']}}" class="dropdown-item text-dark" target="{{$idm['sub_menu_target']}}">
                                                 {{$idm['sub_menu_nama']}}
                                             </a>
                                         </li>

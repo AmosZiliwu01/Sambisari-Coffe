@@ -18,6 +18,7 @@
 </head>
 <body>
 <!-- HEADER SECTION -->
+<!-- HEADER SECTION -->
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container px-5">
@@ -39,7 +40,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     @foreach($dm['itemMenu'] as $idm)
                                         <li>
-                                            <a href="{{$idm['sub_menu_url']}}" class="dropdown-item" target="{{$idm['sub_menu_target']}}">
+                                            <a href="{{$idm['sub_menu_url']}}" class="dropdown-item text-dark" target="{{$idm['sub_menu_target']}}">
                                                 {{$idm['sub_menu_nama']}}
                                             </a>
                                         </li>
@@ -58,33 +59,49 @@
             </div>
         </div>
     </nav>
-    <nav class="navbar navbar-expand-lg">
-{{--        <ul class="navbar-nav mr-auto ms-auto">--}}
-{{--            <li class="nav-item"><a href="{{route('auth.index')}}" class="text-decoration-none">Login</a></li>--}}
-{{--        </ul>--}}
+    <ul class="navbar-nav mr-auto ms-auto">
+        <li class="h3 nav-item" style="display: flex; align-items: center;">
+            @if (auth()->check())
+                @if (auth()->user()->role == 'admin')
+                    <a href="{{ route('dashboard.index') }}" class="nav-link text-decoration-none text-white">Kembali</a>
+                @elseif (auth()->user()->role == 'kasir' || auth()->user()->role == 'pelanggan')
+                    <a href="{{ route('pesanan.index') }}" class="nav-link text-decoration-none text-white">Kembali</a>
+                @endif
+                <a href="{{ route('auth.logout') }}" class="nav-link text-decoration-none text-white ml-2">Logout</a>
+            @else
+                <a href="{{ route('auth.index') }}" class="nav-link text-decoration-none text-white">Login</a>
+                <span class="text-white mx-1">|</span>
+                <a href="{{ route('auth.logout') }}" class="nav-link text-decoration-none text-white">Logout</a>
+            @endif
+        </li>
+    </ul>
 
-        <div class="icons">
-            <div class="fas fa-search" id="search-btn"></div>
-            <div class="fas fa-shopping-cart" id="cart-btn"></div>
-        </div>
-
-        <!-- SEARCH TEXT BOX -->
-        <div class="search-form">
-            <input type="search" id="search-box" class="form-control" placeholder="search here...">
-            <label for="search-box" class="fas fa-search"></label>
-        </div>
-    </nav>
-
-    <!-- CART SECTION -->
-    <div class="cart">
-        <h2 class="cart-title">Your Cart:</h2>
-        <div class="cart-content"></div>
-        <div class="total">
-            <div class="total-title">Total: </div>
-            <div class="total-price">₱0</div>
-        </div>
-        <button type="button" class="btn-buy">Checkout Now</button>
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <div class="fas fa-shopping-cart" id="cart-btn" onclick="redirectCart()"></div>
+        {{--            <div class="fas fa-bars" id="menu-btn"></div>--}}
     </div>
+
+    <!-- SEARCH TEXT BOX -->
+    <div class="search-form">
+        <input type="search" id="search-box" class="form-control" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+    </div>
+
+    <div class="cart">
+        <h2 class="cart-title">Lihat Pesanan</h2>
+        <div class="cart-content">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+        {{--        <div class="total">--}}
+        {{--            <div class="total-title">Total: </div>--}}
+        {{--            <div class="total-price">Rp0</div>--}}
+        {{--        </div>--}}
+        <!-- BUY BUTTON -->
+        <a class="btn btn-buy" href="{{route('pesanan.index')}}">Masuk Kedahsboard</a>
+    </div>
+
+
 </header>
 
 <!-- MENU SECTION -->
@@ -95,43 +112,28 @@
     <div class="footer-container">
         <div class="logo">
             <img src="{{asset('assets-fe/images/LogoSambisari.png')}}"><br/>
-            <i class="fas fa-envelope"></i>
-            <p>abfiguerrez18@gmail.com</p><br />
-            <i class="fas fa-phone"></i>
-            <p>+63 917-134-1422</p><br />
-            <i class="fab fa-facebook-messenger"></i>
-            <p>@kapetanncoffee</p><br />
         </div>
         <div class="support">
-            <h2>Support</h2>
+            <h2>WhatsApp</h2>
             <br />
-            <a href="#">Contact Us</a>
-            <a href="#">Customer Service</a>
-            <a href="#">Chatbot Inquiry</a>
-            <a href="#">Submit a Ticket</a>
+            <a href="https://wa.me/087742262378" target="_blank">
+                <p>+62 087742262378</p>
+            </a>
+            <h2>Instagram</h2>
+            <a href="https://www.instagram.com/sambisaricoffee?igsh=bnJ3emQzbjl2b3p5" target="_blank">sambisaricoffe</a>
         </div>
         <div class="company">
-            <h2>Company</h2>
+            <h2>Maps</h2>
             <br />
-            <a href="#">About Us</a>
-            <a href="#">Affiliates</a>
-            <a href="#">Resources</a>
-            <a href="#">Partnership</a>
-            <a href="#">Suppliers</a>
+            <a href="https://maps.app.goo.gl/8hcERPTYstBUoUhz9" target="_blank">https://maps.app.goo.gl/8hcERPTYstBUoUhz9</a>
+            <h2>TikTok</h2>
+            <a href="https://www.tiktok.com/@sambisari.coffee?is_from_webapp=1&sender_device=pc" target="_blank">sambisari.coffee</a>
         </div>
-        <div class="newsletters">
-            <h2>Newsletters</h2>
+        <div class="company">
+            <h2>Gofood</h2>
             <br />
-            <p>Subscribe to our newsletter for news and updates!</p>
-            <div class="input-wrapper">
-                <input type="email" class="newsletter" placeholder="Your email address">
-                <i id="paper-plane-icon" class="fas fa-paper-plane"></i>
-            </div>
-        </div>
-        <div class="credit">
-            <hr /><br/>
-            <h2>KapeTann Brewed Coffee © 2023 | All Rights Reserved.</h2>
-            <h2>Designed by <span>Algo Filipino</span> | Teravision</h2>
+            <a href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
+               target="_blank">Sambisari Coffe And Space</a>
         </div>
     </div>
 </section>
@@ -151,17 +153,17 @@
                         <h5 id="chat-timestamp"></h5>
                         <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
                     </div>
-                    <!-- Userinput box -->
+                    <!-- User input box -->
                     <div class="chat-bar-input-block">
                         <div id="userInput">
                             <input id="textInput" class="input-box" type="text" name="msg"
                                    placeholder="Tap 'Enter' to send a message">
                             <p></p>
                         </div>
-                        <div class="chat-bar-icons">
-                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-paper-plane"
-                               onclick="sendButton()"></i>
-                        </div>
+                        {{--                        <div class="chat-bar-icons">--}}
+                        {{--                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-paper-plane"--}}
+                        {{--                               onclick="sendButton()"></i>--}}
+                        {{--                        </div>--}}
                     </div>
                     <div id="chat-bar-bottom">
                         <p></p>

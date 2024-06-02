@@ -34,7 +34,7 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->isi_product }}</td>
                                     <td>{{ $product->price }}</td>
-                                    <td>{{ $product->kategori->nama_kategori }}</td>
+                                    <td>{{ $product->kategori->nama_kategori ?? 'Default Category' }}</td>
                                     <td>
                                         <form action="{{ route('product.restore', $product->id) }}" method="POST">
                                             @csrf

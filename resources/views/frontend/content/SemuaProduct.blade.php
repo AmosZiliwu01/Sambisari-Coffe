@@ -17,7 +17,7 @@
                                 <h3 class="product-title">{{$row->name}}</h3>
                                 <div class="price">Rp {{$row->price}}</div>
                                 <p class="card-text mb-0 text-truncate">{!! substr($row->isi_product, 0, 200) !!}</p>
-                                <a class="btn add-cart">Add to Cart</a>
+                                <a class="btn add-cart" href="{{route('pesanan.index')}}">Tambah Pesanan</a>
 
                             </div>
                         </div>

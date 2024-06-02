@@ -52,8 +52,8 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->isi_product }}</td> <!-- Display isi_product -->
                                 <td>{{ $product->price }}</td>
-                                <td>{{ $product->kategori->nama_kategori }}</td>
-                                @can('kasir')
+                                <td>{{ $product->kategori->nama_kategori ?? 'Default Category' }}</td>
+                            @can('kasir')
                                 <td>
                                     <a href="{{ route('product.ubah', $product->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i> Ubah</a>
                                     <a href="{{ route('product.hapus', $product->id) }}" onclick="return confirm('Anda yakin?')" class="btn btn-sm btn-secondary btn-danger"><i class="fa fa-trash"> </i> Hapus</a>

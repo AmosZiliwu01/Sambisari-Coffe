@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return "<strong>Silakan datang ke kasir untuk melihat menu.</strong> <br><br> Mohon maaf saat ini kami masih belum bisa menampilkan menu sesuai website";
             // return "Here's our menu: <br /><br /> Americano - Hot Espresso (12 OZ) - Rp45.000 <br /> Caffe Latte - Steamed Milk (12 OZ) - Rp50.000 <br /> Salted Caramel Espresso (12 OZ) - Rp30.000 <br /> Cafe Mocha Espresso (12 OZ) - Rp25.000 <br /> Spanish Latte Espresso (12 OZ) - Rp15.000 ";
         } else if (input === "about") {
-            return "Halo! <br /><br /> <strong>Sambisari Coffee & Space</strong> Kedai Kopi\n" +
+            return "Halo! <br /><br /> <strong>Sambisari Coffee & Space<br></strong> Kedai Kopi\n" +
                 "WFC TERASIK DI KALASAN, Coffee | Burger & Space\n" +
                 "#sambisaricoffee\n" +
-                "Sejak 2018\n<br/>" +
+                "Sejak 2018\n<br/><br/>" +
                 "<strong>Event | Komunitas | Workshop | Chill\n</strong>" +
                 "Open Collaboration\n<br/>" +
                 "Temukan Kami\n" +
@@ -85,5 +85,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initial bot message
-    addBotMessage("Halo! Ada yang bisa saya bantu hari ini? Anda bisa meminta menu.");
+    addBotMessage("Halo! Ada yang bisa saya bantu hari ini? Silahkan lakukan pencarian menggunakan Keywords.");
 });

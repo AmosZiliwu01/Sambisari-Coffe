@@ -16,7 +16,10 @@
             <div class="col-lg-6">
                 <h1 class="h3 mb-2 text-gray-800">List Pesanan @can('pelangganR')Anda Disini @endcan</h1>
             </div>
-
+            <div class="col-lg-6 text-right">Pesan Melalui GoFood ->
+                <a href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
+                   target="_blank">Sambisari Coffe And Space</a>
+            </div>
         </div>
         <div class="col-lg-12 col-md-12 mt-3">
             <div class="card shadow">
