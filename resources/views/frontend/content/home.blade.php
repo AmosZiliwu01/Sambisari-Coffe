@@ -4,13 +4,16 @@
     <!-- NEWS SECTION -->
     <section class="news" id="news">
         <h1 class="heading" id="newsLates"><span>Latest</span> News</h1>
-        <div class="box-container">
+        <div class="box-container col-lg-12 text-center">
             <div class="news-container">
-                <!-- LightWidget WIDGET -->
-                <iframe src="https://cdn.lightwidget.com/widgets/29a631c7a2285c009faaf3b865d7348b.html" scrolling="no"
-                        allowtransparency="true" class="lightwidget-widget"
-                        style="width:100%;border:white;overflow:hidden;"></iframe>
+                <!-- SnapWidget -->
+                <iframe src="https://snapwidget.com/embed/1069363" class="snapwidget-widget"
+                        allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;
+                        width:2000px; height:500px" title="Posts from Instagram">
+                </iframe>
             </div>
+
+
             <div class="text-center mt-3">
                 <a class="btn btn-dark align-items-center" href="https://www.instagram.com/amos_zil/" target="_blank"
                    style="background-color: #343a40; border-color: #343a40;">

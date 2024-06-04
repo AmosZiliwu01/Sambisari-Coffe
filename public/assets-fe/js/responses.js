@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "👇👇\n<br/>" +
                 "Gang Puntadewa No. 9, Jl. Candi Sambisari, Kadisoko, Purwomartani,, Kalasan, Yogyakarta, Indonesia 55571";
         } else if (input === "contact") {
-            return "Berikut informasi kontak kami: <br /><br /> <strong>Email:</strong> abfiguerrez18@gmail.com <br /> <strong>Nomor Telepon:</strong> 0917 134 1422 <br /> <strong>Messenger:</strong> @kapetanncoffee <br /> <strong>Alamat:</strong> Laoag, San Marcelino, Zambales ";
+            return "Berikut informasi kontak kami: <br /><br /> <strong>WhatsApp :</strong> <a href=\"https://wa.me/087742262378\" target=\"_blank\"> 087742262378</a> <br /> <strong>Nomor Telepon:<a href=\"tel:+62087742262378\">+62 087742262378</a> <br /> <strong>Instagram:</strong><a href=\"https://www.instagram.com/sambisaricoffee?igsh=bnJ3emQzbjl2b3p5\" target=\"_blank\">sambisaricoffe</a> <br /> <strong>Alamat:</strong> <a href='https://maps.app.goo.gl/aibViFGqMCrBXkev8'><strong>Jl. Candi Sambisari Blok D, Kadisoko, Purwomartani, Kec. Kalasan, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55571</strong></a>\ ";
         } else if (input === "how to order") {
             return "Hi there! <br /><br />To place an order, please visit our <a href='/pesanan'>Menu Section</a> and click the button of your choice. Thank you!";
         } else if (input === "location") {

@@ -112,10 +112,24 @@ class PesananController extends Controller
     {
         $pesanan = Pesanan::findOrFail($id);
         $pesanan->status = $status;
+
+        // Jika status diubah menjadi "Selesai"
+        if ($status === 'Selesai') {
+            // Dapatkan item-item yang terkait dengan pesanan ini
+            $items = $pesanan->items()->get();
+
+            // Proses setiap item untuk mengubah status menjadi "No"
+            foreach ($items as $item) {
+                $item->status = 'No';
+                $item->save();
+            }
+        }
+
         $pesanan->save();
 
         return redirect()->back()->with('status', 'Status updated successfully');
     }
+
     public function deleteAll()
     {
         // Delete all pesanan
