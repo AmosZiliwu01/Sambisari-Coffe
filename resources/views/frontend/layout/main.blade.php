@@ -31,7 +31,7 @@
                     <img src="{{asset('assets-fe/images/Icon.png')}}" alt="Logo" style="width: 15rem; height: 40px;">
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" style="margin-left: -4vh; margin-top: -6vh;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
@@ -79,12 +79,12 @@
             @endif
         </li>
     </ul>
-
     <div class="icons">
-            <div class="fas fa-search" id="search-btn"></div>
+{{--            <div class="fas fa-search" id="search-btn"></div>--}}
             <div class="fas fa-shopping-cart" id="cart-btn" onclick="redirectCart()"></div>
 {{--            <div class="fas fa-bars" id="menu-btn"></div>--}}
         </div>
+
 
         <!-- SEARCH TEXT BOX -->
         <div class="search-form">
@@ -109,10 +109,17 @@
 </header>
 
 <!-- HERO SECTION -->
-<section class="home" id="home">
+
+<section class="home" id="home" style="position: relative;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="video-bg" autoplay muted loop style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="{{asset('assets-fe/images/hero-video.mp4')}}" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
     <div class="content">
-        <h3>Selamat datang di Sambisari Coffee Shop!</h3>
-        <p><strong>Selamat datang untuk menikmati kenyamanan kami.</strong></p>
+        <h3 class="contentSection" style="text-shadow: black 0.1em 0.1em 0.2em">Selamat datang di Sambisari Coffee Shop!</h3>
+        <p class="contentSection" style="text-shadow: black 0.1em 0.1em 0.2em"><strong>Selamat datang untuk menikmati kenyamanan kami.</strong></p>
         <a href="#menu" class="btn btn-dark text-decoration-none">Pesan Sekarang!</a>
     </div>
 </section>
@@ -146,7 +153,7 @@
         <div class="company">
             <h2>Gofood</h2>
             <br />
-            <a href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
+            <a style="margin-bottom: 8vh" href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
                target="_blank">Sambisari Coffe And Space</a>
         </div>
 

@@ -1,28 +1,28 @@
 @extends('frontend.layout.main')
 @section('content')
 
-    <!-- NEWS SECTION -->
-    <section class="news" id="news">
-        <h1 class="heading" id="newsLates"><span>Latest</span> News</h1>
-        <div class="box-container col-lg-12 text-center">
-            <div class="news-container">
-                <!-- SnapWidget -->
-                <iframe src="https://snapwidget.com/embed/1069363" class="snapwidget-widget"
-                        allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;
-                        width:2000px; height:500px" title="Posts from Instagram">
-                </iframe>
-            </div>
+{{--    <!-- NEWS SECTION -->--}}
+{{--    <section class="news" id="news">--}}
+{{--        <h1 class="heading" id="newsLates"><span>Latest</span> News</h1>--}}
+{{--        <div class="box-container col-lg-12 text-center">--}}
+{{--            <div class="news-container">--}}
+{{--                <!-- SnapWidget -->--}}
+{{--                <iframe src="https://snapwidget.com/embed/1069363" class="snapwidget-widget"--}}
+{{--                        allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;--}}
+{{--                        width:2000px; height:500px" title="Posts from Instagram">--}}
+{{--                </iframe>--}}
+{{--            </div>--}}
 
 
-            <div class="text-center mt-3">
-                <a class="btn btn-dark align-items-center" href="https://www.instagram.com/amos_zil/" target="_blank"
-                   style="background-color: #343a40; border-color: #343a40;">
-                    Lihat Semua Berita
-                    <i class="bi bi-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+{{--            <div class="text-center mt-3">--}}
+{{--                <a class="btn btn-dark align-items-center" href="https://www.instagram.com/amos_zil/" target="_blank"--}}
+{{--                   style="background-color: #343a40; border-color: #343a40;">--}}
+{{--                    Lihat Semua Berita--}}
+{{--                    <i class="bi bi-arrow-right"></i>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
 
 

@@ -27,7 +27,7 @@
                     <img src="{{asset('assets-fe/images/Icon.png')}}" alt="Logo" style="width: 15rem; height: 40px;">
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" style="margin-left: -4vh; margin-top: -6vh;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
@@ -77,7 +77,7 @@
     </ul>
 
     <div class="icons">
-        <div class="fas fa-search" id="search-btn"></div>
+{{--        <div class="fas fa-search" id="search-btn"></div>--}}
         <div class="fas fa-shopping-cart" id="cart-btn" onclick="redirectCart()"></div>
         {{--            <div class="fas fa-bars" id="menu-btn"></div>--}}
     </div>
@@ -132,7 +132,7 @@
         <div class="company">
             <h2>Gofood</h2>
             <br />
-            <a href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
+            <a style="margin-bottom: 8vh" href="https://gofood.link/a/L97xVxJ?fbclid=PAZXh0bgNhZW0CMTEAAaZJkNLNs_tA7JNcLPj5ffrDwdbYimEcDHrkUba_E4R_9UTmmmoUFiQ5qsU_aem_Afp-Litm351cTs3LOF7fNBq6InodEx_7FD-XGvzr6z7UHNgYj2icz1iames_3nvkWHULX5ZmEjqNIoCuBEMTkphb"
                target="_blank">Sambisari Coffe And Space</a>
         </div>
     </div>
